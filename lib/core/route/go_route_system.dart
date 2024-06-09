@@ -15,14 +15,11 @@ import 'package:quiz_app/widget/screen/Main/main_screen.dart';
 import 'package:quiz_app/widget/screen/Splash/splash_screen.dart';
 
 final class GoRouteSystem {
-
   static GoRouter router = GoRouter(
-
     /// Initial Location
     initialLocation: AppRouteName.signIn,
 
     routes: [
-
       /// Splash screen
       GoRoute(
         path: AppRouteName.splash,
@@ -61,13 +58,11 @@ final class GoRouteSystem {
             routes: [
               GoRoute(
                 path: AppRouteName.homeCategory,
-                builder: (context, state) =>
-                    const SelectedCategoryScreenFromHomeScreen(),
+                builder: (context, state) => const SelectedCategoryScreenFromHomeScreen(),
                 routes: [
                   GoRoute(
                     path: AppRouteName.difficultySelection,
-                    builder: (context, state) =>
-                        const DifficultySelectionScreen(),
+                    builder: (context, state) => const DifficultySelectionScreen(),
                     routes: [
                       GoRoute(
                         path: AppRouteName.quizGame,
@@ -75,8 +70,7 @@ final class GoRouteSystem {
                         routes: [
                           GoRoute(
                             path: AppRouteName.quizGameResult,
-                            builder: (context, state) =>
-                                const QuizGameResultScreen(),
+                            builder: (context, state) => const QuizGameResultScreen(),
                           ),
                         ],
                       ),
@@ -92,8 +86,7 @@ final class GoRouteSystem {
             routes: [
               GoRoute(
                 path: AppRouteName.levelCategory,
-                builder: (context, state) =>
-                    const SelectedCategoryScreenFromLevelScreen(),
+                builder: (context, state) => const SelectedCategoryScreenFromLevelScreen(),
               ),
             ],
           ),
@@ -103,7 +96,6 @@ final class GoRouteSystem {
           ),
         ],
       ),
-
     ],
   );
 }

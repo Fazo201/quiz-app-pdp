@@ -132,6 +132,13 @@ class AppTextStyle extends TextTheme {
     color: AppColors.black,
     fontFamily: 'Poppins',
   );
+
+  TextStyle? get hintText => const TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: FontSize.size12,
+    color: AppColors.lC1C1C1,
+    fontFamily: 'Poppins',
+  );
 }
 
 @immutable
