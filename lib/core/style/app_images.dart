@@ -25,8 +25,8 @@ sealed class AppImages {
 
   static final googleLogo = SvgPicture.asset(
     "assets/images/google_logo.svg",
-    height: 44,
-    width: 44,
+    height: 65,
+    width: 65,
     fit: BoxFit.cover,
   );
 
