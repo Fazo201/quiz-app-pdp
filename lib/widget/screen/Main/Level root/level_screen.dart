@@ -12,7 +12,7 @@ class _LevelScreenState extends State<LevelScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("Level Screen screen"),
+        child: Text("Level Screen"),
       ),
     );
   }
