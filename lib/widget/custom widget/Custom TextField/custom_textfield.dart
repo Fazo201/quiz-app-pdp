@@ -16,7 +16,8 @@ class CustomTextField extends StatelessWidget {
       required this.controller,
       required this.keyBoardType,
       required this.obscureText,
-      required this.labelText});
+      required this.labelText,
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,10 @@ class CustomTextField extends StatelessWidget {
       obscureText: obscureText,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        labelText: labelText,
+        label: Text(labelText,
+          style: const AppTextStyle().bodyMedium,
+        ),
         hintText: hintText,
-        // enabled: false,
-        labelStyle: const AppTextStyle().bodyMedium?.copyWith(
-              color: AppColors.l121212,
-            ),
         hintStyle: const AppTextStyle().hintText,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(

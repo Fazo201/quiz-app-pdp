@@ -17,8 +17,8 @@ class AppTextStyle extends TextTheme {
   @override
   TextStyle? get bodyMedium =>  const TextStyle(
     fontWeight: FontWeight.w400,
-    fontSize: FontSize.size14,
-    color: AppColors.black,
+    fontSize: FontSize.size20,
+    color: AppColors.l121212,
     fontFamily: 'Poppins',
   );
 

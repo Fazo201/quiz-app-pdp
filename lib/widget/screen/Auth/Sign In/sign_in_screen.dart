@@ -35,8 +35,8 @@ class _SignInScreenState extends State<SignInScreen> {
               controller: emailC,
               keyBoardType: TextInputType.emailAddress,
               obscureText: true,
-              hintText: "quiz@gmail.com",
-              labelText: "Email",
+              hintText: "example@gmail.com",
+              labelText: "Phone Number",
             ),
             const Spacer(),
             CustomRichText(
