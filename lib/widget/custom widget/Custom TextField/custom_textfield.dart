@@ -3,21 +3,22 @@ import 'package:quiz_app/core/style/app_colors.dart';
 import 'package:quiz_app/core/style/app_text_style.dart';
 
 class CustomTextField extends StatelessWidget {
-
   final String hintText;
   final String labelText;
   final TextEditingController controller;
   final TextInputType keyBoardType;
+  final TextInputAction textInputAction;
   final bool obscureText;
 
-  const CustomTextField(
-      {super.key,
-      required this.hintText,
-      required this.controller,
-      required this.keyBoardType,
-      required this.obscureText,
-      required this.labelText,
-    });
+  const CustomTextField({
+    super.key,
+    required this.hintText,
+    required this.controller,
+    required this.keyBoardType,
+    required this.obscureText,
+    required this.labelText,
+    required this.textInputAction,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +26,10 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       keyboardType: keyBoardType,
       obscureText: obscureText,
-      textInputAction: TextInputAction.next,
+      textInputAction: textInputAction,
       decoration: InputDecoration(
-        label: Text(labelText,
+        label: Text(
+          labelText,
           style: const AppTextStyle().bodyMedium,
         ),
         hintText: hintText,
