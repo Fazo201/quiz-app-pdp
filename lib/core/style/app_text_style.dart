@@ -148,6 +148,13 @@ class AppTextStyle extends TextTheme {
     fontFamily: 'Poppins',
   );
 
+  TextStyle? get labelHide => const TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: FontSize.size12,
+    color: AppColors.lC1C1C1,
+    fontFamily: 'Poppins',
+  );
+
   TextStyle? get orSignInWith => const TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: FontSize.size11,
@@ -160,6 +167,7 @@ class AppTextStyle extends TextTheme {
 class FontSize {
   const FontSize._();
 
+  static const double size0 = 0;
   static const double size6_4 = 6.4;
   static const double size7_8 = 7.8;
   static const double size9_5 = 9.5;

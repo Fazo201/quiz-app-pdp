@@ -19,6 +19,7 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController passC = TextEditingController();
 
   bool obscureText = false;
+  bool vision = true;
 
   @override
   void dispose() {
@@ -38,7 +39,6 @@ class _SignInScreenState extends State<SignInScreen> {
             const Spacer(),
             AppImages.signInPdpLogo,
             const Spacer(),
-
             /// Texts
             Column(
               children: [
@@ -65,9 +65,8 @@ class _SignInScreenState extends State<SignInScreen> {
               controller: emailC,
               keyBoardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
-              obscureText: true,
               hintText: "example@gmail.com",
-              labelText: "Phone Number",
+              labelText: "Email",
             ),
             const SizedBox(height: 25),
             CustomTextField(
@@ -77,6 +76,22 @@ class _SignInScreenState extends State<SignInScreen> {
               obscureText: obscureText,
               hintText: "Password",
               labelText: "Password",
+              suffixIcon: IconButton(
+                  onPressed: () {
+                    vision = !vision;
+                    obscureText = !obscureText;
+                    setState(() {});
+                  },
+                  icon: vision
+                      ? const Icon(Icons.visibility,
+                      color: Color(0xFFADADAD))
+                      : const Icon(Icons.visibility_off,
+                      color: Color(0xFFADADAD))),
+              onTap: (){
+                setState(() {
+                  obscureText = !obscureText;
+                });
+              },
             ),
             const SizedBox(height: 25),
             MaterialButton(
@@ -90,7 +105,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               child: Text(
                 "Sign In",
-                style: AppTextStyle().titleMedium?.copyWith(
+                style: const AppTextStyle().titleMedium?.copyWith(
                   color: AppColors.white,
                   fontSize: 16,
                 ),
