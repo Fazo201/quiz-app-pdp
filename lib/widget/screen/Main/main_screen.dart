@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quiz_app/core/route/app_route_name.dart';
 import 'package:quiz_app/widget/custom%20widget/custom_bottom_navigation_bar.dart';
-import 'package:quiz_app/widget/screen/Main/Home%20root/home_screen.dart';
-import 'package:quiz_app/widget/screen/Main/Level%20root/level_screen.dart';
-import 'package:quiz_app/widget/screen/Main/Profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   final Widget child;
@@ -13,23 +12,22 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int currentIndex = 0;
-  PageController pageController = PageController();
-
-  final List<Widget> screens = const <Widget>[
-    HomeScreen(),
-    LevelScreen(),
-    ProfileScreen(),
-  ];
+  int currentIndex = 2;
 
   void nextScreen(int index) {
     currentIndex = index;
-    pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 50),
-      curve: Curves.easeInOutExpo,
-    );
-    setState(() {});
+    switch (index) {
+      case 0:
+        context.go(AppRouteName.home);
+        break;
+      case 1:
+        context.go(AppRouteName.level);
+        break;
+      case 2:
+        context.go(AppRouteName.profile);
+        break;
+      default:
+    }
   }
 
   @override
@@ -37,11 +35,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: PageView(
-        controller: pageController,
-        onPageChanged: nextScreen,
-        children: screens,
-      ),
+      body: widget.child,
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: currentIndex, 
         onTap: nextScreen,

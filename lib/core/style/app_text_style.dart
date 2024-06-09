@@ -122,6 +122,7 @@ class AppTextStyle extends TextTheme {
     letterSpacing: 0.04,
   );
 
+  //ishlatildi
   @override
   TextStyle? get titleSmall => const TextStyle(
     fontWeight: FontWeight.w400,
