@@ -133,7 +133,7 @@ class AppTextStyle extends TextTheme {
 
   TextStyle? get richText => const TextStyle(
     fontWeight: FontWeight.w500,
-    fontSize: FontSize.size11,
+    fontSize: FontSize.size14,
     color: AppColors.black,
     fontFamily: 'Poppins',
   );
@@ -144,12 +144,34 @@ class AppTextStyle extends TextTheme {
     color: AppColors.lC1C1C1,
     fontFamily: 'Poppins',
   );
+
+  TextStyle? get subText => const TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: FontSize.size20,
+    color: AppColors.l121212,
+    fontFamily: 'Poppins',
+  );
+
+  TextStyle? get labelHide => const TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: FontSize.size12,
+    color: AppColors.lC1C1C1,
+    fontFamily: 'Poppins',
+  );
+
+  TextStyle? get orSignInWith => const TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: FontSize.size11,
+    color: AppColors.lC1C1C1,
+    fontFamily: 'Poppins',
+  );
 }
 
 @immutable
 class FontSize {
   const FontSize._();
 
+  static const double size0 = 0;
   static const double size6_4 = 6.4;
   static const double size7_8 = 7.8;
   static const double size9_5 = 9.5;
