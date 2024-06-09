@@ -60,15 +60,15 @@ sealed class AppImages {
 
   static final homeCPlusLogo = SvgPicture.asset(
     'assets/images/c_plus_logo.svg',
-    height: 75,
-    width: 75,
+    height: 74.26,
+    width: 66.7,
     fit: BoxFit.cover,
   );
 
   static final homeCSharpLogo = SvgPicture.asset(
     'assets/images/c_sharp_logo.svg',
-    height: 75,
-    width: 75,
+    height: 74.26,
+    width: 66.7,
     fit: BoxFit.cover,
   );
 

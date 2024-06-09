@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/style/app_colors.dart';
 import 'package:quiz_app/core/style/app_images.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -33,6 +34,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             label: "",
           ),
         ],
+        backgroundColor: AppColors.white,
       );
   }
 }
