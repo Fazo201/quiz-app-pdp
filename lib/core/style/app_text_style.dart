@@ -14,6 +14,7 @@ class AppTextStyle extends TextTheme {
     fontFamily: 'Poppins',
   );
 
+  //ishlatildi
   @override
   TextStyle? get bodyMedium =>  const TextStyle(
     fontWeight: FontWeight.w400,
@@ -102,6 +103,7 @@ class AppTextStyle extends TextTheme {
     fontFamily: 'Poppins',
   );
 
+  //ishlatildi
   @override
   TextStyle? get titleLarge =>  const TextStyle(
     fontWeight: FontWeight.w600,
@@ -110,6 +112,7 @@ class AppTextStyle extends TextTheme {
     fontFamily: 'Poppins',
   );
 
+  //ishlatildi
   @override
   TextStyle? get titleMedium => const TextStyle(
     fontWeight: FontWeight.w600,
