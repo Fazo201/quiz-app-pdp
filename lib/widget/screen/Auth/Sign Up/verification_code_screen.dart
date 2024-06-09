@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/style/app_images.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
   const VerificationCodeScreen({super.key});
@@ -10,9 +11,16 @@ class VerificationCodeScreen extends StatefulWidget {
 class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text("Verification Code Screen screen"),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 35),
+          child: Column(
+            children: [
+              AppImages.signInPdpLogo,
+            ],
+          ),
+        ),
       ),
     );
   }
