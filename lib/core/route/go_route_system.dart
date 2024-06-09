@@ -19,7 +19,7 @@ final class GoRouteSystem {
   static GoRouter router = GoRouter(
 
     /// Initial Location
-    initialLocation: AppRouteName.splash,
+    initialLocation: AppRouteName.signIn,
 
     routes: [
 

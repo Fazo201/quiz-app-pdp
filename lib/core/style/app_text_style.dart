@@ -125,6 +125,13 @@ class AppTextStyle extends TextTheme {
     color: AppColors.black,
     fontFamily: 'Poppins',
   );
+
+  TextStyle? get richText => const TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: FontSize.size11,
+    color: AppColors.black,
+    fontFamily: 'Poppins',
+  );
 }
 
 @immutable
@@ -136,6 +143,7 @@ class FontSize {
   static const double size9_5 = 9.5;
   static const double size10 = 10;
   static const double size10_5 = 10.5;
+  static const double size11 = 11;
   static const double size12 = 12;
   static const double size12_5 = 12.5;
   static const double size13 = 13;
