@@ -105,23 +105,24 @@ class AppTextStyle extends TextTheme {
   @override
   TextStyle? get titleLarge =>  const TextStyle(
     fontWeight: FontWeight.w600,
-    fontSize: FontSize.size28,
+    fontSize: FontSize.size20,
     color: AppColors.black,
     fontFamily: 'Poppins',
   );
 
   @override
   TextStyle? get titleMedium => const TextStyle(
-    fontWeight: FontWeight.w700,
-    fontSize: FontSize.size18,
+    fontWeight: FontWeight.w600,
+    fontSize: FontSize.size14_8,
     color: AppColors.black,
     fontFamily: 'Poppins',
+    letterSpacing: 0.04,
   );
 
   @override
   TextStyle? get titleSmall => const TextStyle(
     fontWeight: FontWeight.w400,
-    fontSize: FontSize.size18,
+    fontSize: FontSize.size12,
     color: AppColors.black,
     fontFamily: 'Poppins',
   );
@@ -142,6 +143,8 @@ class FontSize {
   static const double size13_5 = 13.5;
   static const double size14 = 14;
   static const double size14_2 = 14.2;
+  static const double size14_8 = 14.8;
+  static const double size15 = 15;
   static const double size16 = 16;
   static const double size17_3 = 17.3;
   static const double size18 = 18;
