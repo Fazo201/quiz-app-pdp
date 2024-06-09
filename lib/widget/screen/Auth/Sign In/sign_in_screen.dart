@@ -66,8 +66,8 @@ class _SignInScreenState extends State<SignInScreen> {
               keyBoardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
               obscureText: true,
-              hintText: "quiz@gmail.com",
-              labelText: "Email",
+              hintText: "example@gmail.com",
+              labelText: "Phone Number",
             ),
             const SizedBox(height: 25),
             CustomTextField(
