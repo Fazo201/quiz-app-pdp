@@ -40,6 +40,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
       ),
     );
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 35),
