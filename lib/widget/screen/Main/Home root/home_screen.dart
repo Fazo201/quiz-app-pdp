@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   
   List<CustomHomeCategory> list = [
-    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeFlutterLogo,text: "Flutter",goLocation: AppRouteName.splash,),
+    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeFlutterLogo,text: "Flutter",goLocation: "${AppRouteName.home}/${AppRouteName.homeCategory}",),
     CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homePythonLogo,text: "Phyton",),
     CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeFrontendLogo,text: "Frontend",),
     CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeJavaLogo,text: "Java",),
@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.white,
-        toolbarHeight: 106,
+        toolbarHeight: 112,
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: SizedBox(
