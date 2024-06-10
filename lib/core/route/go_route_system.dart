@@ -17,7 +17,7 @@ import 'package:quiz_app/widget/screen/Splash/splash_screen.dart';
 final class GoRouteSystem {
   static GoRouter router = GoRouter(
     /// Initial Location
-    initialLocation: AppRouteName.profile,
+    initialLocation: AppRouteName.signIn,
 
     routes: [
       /// Splash screen
