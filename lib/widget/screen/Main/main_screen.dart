@@ -12,7 +12,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int currentIndex = 2;
+  int currentIndex = 0;
 
   void nextScreen(int index) {
     currentIndex = index;
