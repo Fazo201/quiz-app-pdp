@@ -18,21 +18,26 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController firstNameC = TextEditingController();
   TextEditingController lastNameC = TextEditingController();
-  TextEditingController phoneNumberC = TextEditingController();
+  TextEditingController emailC = TextEditingController();
+  TextEditingController passC = TextEditingController();
 
   bool checkBox = false;
+  bool obscureText = false;
+  bool vision = true;
 
   @override
   void dispose() {
     super.dispose();
     firstNameC.dispose();
     lastNameC.dispose();
-    phoneNumberC.dispose();
+    emailC.dispose();
+    passC.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -76,13 +81,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             const SizedBox(height: 25),
             CustomTextField(
-              controller: phoneNumberC,
-              hintText: "+998",
-              labelText: "Phone Number",
-              keyBoardType: TextInputType.phone,
-              textInputAction: TextInputAction.done,
+              controller: emailC,
+              hintText: "+example@gmail.com",
+              labelText: "Email",
+              keyBoardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
             ),
-            const SizedBox(height: 21),
+            const SizedBox(height: 25),
+            CustomTextField(
+              controller: passC,
+              hintText: "Password",
+              labelText: "Password",
+              obscureText: obscureText,
+              keyBoardType: TextInputType.text,
+              textInputAction: TextInputAction.done,
+              suffixIcon: IconButton(
+                  onPressed: () {
+                    vision = !vision;
+                    obscureText = !obscureText;
+                    setState(() {});
+                  },
+                  icon: vision
+                      ? const Icon(Icons.visibility,
+                      color: Color(0xFFADADAD))
+                      : const Icon(Icons.visibility_off,
+                      color: Color(0xFFADADAD))),
+              onTap: (){
+                setState(() {
+                  obscureText = !obscureText;
+                });
+              },
+            ),
+            const SizedBox(height: 20),
             Row(
               children: [
                 IconButton(
