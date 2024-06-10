@@ -43,7 +43,7 @@ class CustomTextField extends StatelessWidget {
               ),
               labelStyle: const AppTextStyle().labelHide,
               floatingLabelStyle:
-                  const AppTextStyle().subText?.copyWith(fontSize: 25),
+                  const AppTextStyle().subText?.copyWith(fontSize: 19),
               label: Text(labelText),
               hintText: hintText,
               hintStyle: const AppTextStyle().hintText,
