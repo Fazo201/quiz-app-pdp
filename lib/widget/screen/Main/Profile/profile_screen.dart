@@ -15,6 +15,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
   File? file;
   bool isCamera = false;
   TextEditingController nameC = TextEditingController();
@@ -125,16 +126,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 470,
+                Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.5),
-                            color: AppColors.lD9D9D9),
+                      const Divider(
+                        color: AppColors.lD9D9D9,
                       ),
                       SizedBox(
                         height: 36,

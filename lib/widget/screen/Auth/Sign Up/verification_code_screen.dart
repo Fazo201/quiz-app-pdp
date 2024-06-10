@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
+import 'package:quiz_app/core/route/app_route_name.dart';
 import 'package:quiz_app/core/style/app_colors.dart';
 import 'package:quiz_app/core/style/app_images.dart';
 import 'package:quiz_app/widget/custom%20widget/custom_richtext.dart';
@@ -66,7 +67,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                           border: Border.all(color: Colors.green),
                         ),
                       ),
-                      onCompleted: (pin) => debugPrint(pin),
+                      onCompleted: (pin) => context.go(AppRouteName.home),
                     ),
                   ],
                 ),
