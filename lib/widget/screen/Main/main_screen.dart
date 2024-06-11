@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quiz_app/core/route/app_route_name.dart';
+import 'package:quiz_app/core/route/app_route_path.dart';
 import 'package:quiz_app/widget/custom%20widget/custom_bottom_navigation_bar.dart';
 
 class MainScreen extends StatefulWidget {
@@ -18,13 +18,13 @@ class _MainScreenState extends State<MainScreen> {
     currentIndex = index;
     switch (index) {
       case 0:
-        context.go(AppRouteName.home);
+        context.go(AppRoutePath.home);
         break;
       case 1:
-        context.go(AppRouteName.level);
+        context.go(AppRoutePath.level);
         break;
       case 2:
-        context.go(AppRouteName.profile);
+        context.go(AppRoutePath.profile);
         break;
       default:
     }
@@ -37,9 +37,10 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: Colors.white,
       body: widget.child,
       bottomNavigationBar: CustomBottomNavigationBar(
-        currentIndex: currentIndex, 
+        currentIndex: currentIndex,
         onTap: nextScreen,
       ),
     );
   }
 }
+

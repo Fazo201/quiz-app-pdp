@@ -1,8 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/route/app_route_name.dart';
+import 'package:quiz_app/core/route/app_route_path.dart';
 import 'package:quiz_app/widget/screen/Auth/Sign%20In/sign_in_screen.dart';
 import 'package:quiz_app/widget/screen/Auth/Sign%20Up/sign_up_screen.dart';
 import 'package:quiz_app/widget/screen/Auth/Sign%20Up/verification_code_screen.dart';
+import 'package:quiz_app/widget/screen/Auth/auth_gate.dart';
 import 'package:quiz_app/widget/screen/Main/Home%20root/home_screen.dart';
 import 'package:quiz_app/widget/screen/Main/Level%20root/level_screen.dart';
 import 'package:quiz_app/widget/screen/Main/Level%20root/selected_category_screen_from_level_screen.dart';
@@ -18,26 +20,31 @@ import '../../widget/screen/Main/Home root/Difficulity selection/difficulty_sele
 final class GoRouteSystem {
   static GoRouter router = GoRouter(
     /// Initial Location
-    initialLocation: AppRouteName.splash,
+    initialLocation: AppRoutePath.splash,
 
     routes: [
       /// Splash screen
       GoRoute(
-        path: AppRouteName.splash,
+        path: AppRoutePath.splash,
         builder: (context, state) => const SplashScreen(),
       ),
-
+      /// Auth Gate
+      GoRoute(
+        path: AppRoutePath.authGate,
+        builder: (context, state) => const AuthGate(),
+      ),
       /// Auth
       GoRoute(
-        path: AppRouteName.signIn,
+        path: AppRoutePath.signIn,
         builder: (context, state) => const SignInScreen(),
         routes: [
           GoRoute(
-            path: AppRouteName.signUp,
+            path: AppRoutePath.signUp,
             builder: (context, state) => const SignUpScreen(),
             routes: [
               GoRoute(
-                path: AppRouteName.verificationCode,
+                name: AppRouteName.verificationCode,
+                path: AppRoutePath.verificationCode,
                 builder: (context, state) => const VerificationCodeScreen(),
               ),
             ],
@@ -54,23 +61,23 @@ final class GoRouteSystem {
         },
         routes: [
           GoRoute(
-            path: AppRouteName.home,
+            path: AppRoutePath.home,
             builder: (context, state) => const HomeScreen(),
             routes: [
               GoRoute(
-                path: AppRouteName.difficultySelection,
+                path: AppRoutePath.difficultySelection,
                 builder: (context, state) => const DifficultySelectionScreen(),
                 routes: [
                   GoRoute(
-                    path: AppRouteName.homeCategory,
+                    path: AppRoutePath.homeCategory,
                     builder: (context, state) => const SelectedCategoryScreenFromHomeScreen(),
                     routes: [
                       GoRoute(
-                        path: AppRouteName.quizGame,
+                        path: AppRoutePath.quizGame,
                         builder: (context, state) => const QuizGameScreen(),
                         routes: [
                           GoRoute(
-                            path: AppRouteName.quizGameResult,
+                            path: AppRoutePath.quizGameResult,
                             builder: (context, state) => const QuizGameResultScreen(),
                           ),
                         ],
@@ -82,17 +89,17 @@ final class GoRouteSystem {
             ],
           ),
           GoRoute(
-            path: AppRouteName.level,
+            path: AppRoutePath.level,
             builder: (context, state) => const LevelScreen(),
             routes: [
               GoRoute(
-                path: AppRouteName.levelCategory,
+                path: AppRoutePath.levelCategory,
                 builder: (context, state) => const SelectedCategoryScreenFromLevelScreen(),
               ),
             ],
           ),
           GoRoute(
-            path: AppRouteName.profile,
+            path: AppRoutePath.profile,
             builder: (context, state) => const ProfileScreen(),
           ),
         ],

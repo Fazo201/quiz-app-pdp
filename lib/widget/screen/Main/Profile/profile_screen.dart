@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:quiz_app/core/style/app_colors.dart';
@@ -15,7 +16,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   File? file;
   bool isCamera = false;
   TextEditingController nameC = TextEditingController();
@@ -55,6 +56,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   @override
+  void initState() {
+    firebaseAuth = FirebaseAuth.instance;
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -74,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 SizedBox(
                   height: 219,
-                  width: 186,
+                  width: double.infinity,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -101,7 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               style: const AppTextStyle().titleSmall,
                             ),
                             Text(
-                              "Nuul",
+                              "${firebaseAuth.currentUser?.displayName?.split('/')[0]} ${firebaseAuth.currentUser?.displayName?.split('/')[1]}",
                               style: const AppTextStyle().profileTitle,
                             ),
                           ],
@@ -117,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               style: const AppTextStyle().titleSmall,
                             ),
                             Text(
-                              "Nuul",
+                              "${firebaseAuth.currentUser?.email}",
                               style: const AppTextStyle().profileTitle,
                             ),
                           ],

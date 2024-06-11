@@ -1,9 +1,16 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
-import 'package:quiz_app/core/route/app_route_name.dart';
+import 'package:quiz_app/core/route/app_route_path.dart';
 import 'package:quiz_app/core/style/app_colors.dart';
 import 'package:quiz_app/core/style/app_images.dart';
+import 'package:quiz_app/models/firebase_model.dart';
+import 'package:quiz_app/models/otp_model.dart';
+import 'package:quiz_app/services/auth_service.dart';
+import 'package:quiz_app/services/util_service.dart';
 import 'package:quiz_app/widget/custom%20widget/custom_richtext.dart';
 import '../../../custom widget/custom_keyboard_button.dart';
 
@@ -15,7 +22,6 @@ class VerificationCodeScreen extends StatefulWidget {
 }
 
 class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
-
   TextEditingController pinC = TextEditingController();
 
   @override
@@ -26,6 +32,29 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Map<String,dynamic> data = ModalRoute.of(context)?.settings.arguments as Map<String,dynamic>;
+    
+    Future<void> otp(String otp) async {
+      log(otp);
+      if (await OTPModel.verifyOTP(inputOTP: otp)) {
+        User? user = await AuthService.registerUser(
+          context,
+          fullName: data["fullName"]!,
+          email: data["email"]!,
+          password: data["password"]!,
+        );
+        if (user != null) {
+          if (mounted) {
+            Utils.fireSnackBar("Successfully registered",context);
+            context.go(AppRoutePath.home);
+          }
+        }
+      }else{
+        Utils.fireSnackBar("Pin code is not filled",context,error: true);
+      }
+    }
+
+
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 70,
@@ -67,7 +96,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                           border: Border.all(color: Colors.green),
                         ),
                       ),
-                      onCompleted: (pin) => context.go(AppRouteName.home),
+                      onCompleted: (pin)async => await otp(pin),
                     ),
                   ],
                 ),

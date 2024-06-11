@@ -168,7 +168,7 @@ class AppTextStyle extends TextTheme {
 
   TextStyle? get profileTitle =>  const TextStyle(
     fontWeight: FontWeight.w600,
-    fontSize: FontSize.size18,
+    fontSize: FontSize.size16,
     color: AppColors.black,
     fontFamily: 'Poppins',
   );

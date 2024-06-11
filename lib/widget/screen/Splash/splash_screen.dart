@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quiz_app/core/route/app_route_name.dart';
+import 'package:quiz_app/core/route/app_route_path.dart';
 import 'package:quiz_app/core/style/app_images.dart';
 
 import '../../../core/style/app_colors.dart';
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(
       const Duration(seconds: 2),
-      () => context.go(AppRouteName.signIn),
+      () => context.go(AppRoutePath.authGate),
     );
   }
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_app/core/route/app_route_name.dart';
+import 'package:quiz_app/models/otp_model.dart';
+import 'package:quiz_app/services/util_service.dart';
 
-import '../../../../core/route/app_route_name.dart';
 import '../../../../core/style/app_colors.dart';
 import '../../../../core/style/app_images.dart';
 import '../../../../core/style/app_text_style.dart';
@@ -24,6 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   bool obscureText = false;
   bool vision = true;
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -33,6 +36,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
     emailC.dispose();
     passC.dispose();
   }
+
+  Future<void> register() async {
+    if (firstNameC.text.isEmpty) {
+      Utils.fireSnackBar("Name is not filled",context,error: true);
+    } else if (lastNameC.text.isEmpty) {
+      Utils.fireSnackBar("Last name is not filled",context,error: true);
+    } else if (emailC.text.isEmpty) {
+      Utils.fireSnackBar("Email is not filled",context,error: true);
+    } else if (passC.text.length < 6) {
+      Utils.fireSnackBar("Password should be more than 6 char",context,error: true);
+    }else {
+      if (await OTPModel.sendOTP(userEmail: emailC.text)) {
+        Map<String,dynamic> map = {
+          "fullName":"${firstNameC.text}/${lastNameC.text}",
+          "email":emailC.text,
+          "password": passC.text
+        };
+        Utils.fireSnackBar("Successfully",context);
+        context.goNamed(AppRouteName.verificationCode, queryParameters: map);
+      }
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -115,9 +141,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const CustomCheckbox(),
             const SizedBox(height: 21),
             MaterialButton(
-              onPressed: () {
-                context.go(
-                    "${AppRouteName.signIn}/${AppRouteName.signUp}/${AppRouteName.verificationCode}");
+              onPressed: () async{
+                await register();
               },
               color: AppColors.l00B533,
               height: 60,
