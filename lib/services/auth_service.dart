@@ -26,7 +26,7 @@ final class AuthService {
         return null;
       }
     } catch (e) {
-      Utils.fireSnackBar('$e',context);
+      Utils.fireSnackBar('$e',context,error: true);
       return null;
     }
   }
@@ -47,7 +47,7 @@ final class AuthService {
         return null;
       }
     } catch (e) {
-      Utils.fireSnackBar('$e',context);
+      Utils.fireSnackBar('$e',context,error: true);
       return null;
     }
   }
