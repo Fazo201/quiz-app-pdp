@@ -1,11 +1,15 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:quiz_app/core/route/app_route_path.dart';
 import 'package:quiz_app/core/style/app_colors.dart';
 import 'package:quiz_app/core/style/app_images.dart';
 import 'package:quiz_app/core/style/app_text_style.dart';
+import 'package:quiz_app/services/auth_service.dart';
 import 'package:quiz_app/widget/custom%20widget/Custom%20TextField/custom_textfield.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -50,9 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   ImageProvider<Object>? profileImage({File? file}) {
-    return file != null
-        ? Image.file(file).image
-        : null;
+    return file != null ? Image.file(file).image : null;
   }
 
   @override
@@ -61,7 +63,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,6 +70,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: const Color(0xffF6F6F6),
       appBar: AppBar(
         backgroundColor: AppColors.white,
+        actions: [
+          PopupMenuButton<String>(
+            color: AppColors.white,
+            itemBuilder: (BuildContext context) {
+              return <PopupMenuEntry<String>>[
+                PopupMenuItem<String>(
+                  value: 'option1',
+                  child: ListTile(
+                    leading: const Icon(CupertinoIcons.delete),
+                    title: Text('Delete account',style: const AppTextStyle().titleSmall),
+                  ),
+                ),
+                const PopupMenuDivider(),
+                PopupMenuItem<String>(
+                  value: 'option2',
+                  child: ListTile(
+                    leading: const Icon(Icons.logout_outlined),
+                    title: Text('Logout',style: const AppTextStyle().titleSmall),
+                  ),
+                ),
+              ];
+            },
+            onSelected: (String value) async{
+              switch (value) {
+                case 'option1':
+                  await AuthService.deleteAccount();
+                  context.go("${AppRoutePath.signIn}/${AppRoutePath.signUp}");
+                  break;
+                case 'option2':
+                  await AuthService.logOut();
+                  context.go(AppRoutePath.signIn);
+                  break;
+              }
+            },
+          )
+        ],
       ),
       body: Container(
         height: double.infinity,
@@ -96,7 +133,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           radius: 55,
                           backgroundColor: Colors.transparent,
                           backgroundImage: profileImage(file: file),
-                          child: file==null ? AppImages.profilePersonIcon:null,
+                          child:
+                              file == null ? AppImages.profilePersonIcon : null,
                         ),
                       ),
                       SizedBox(
@@ -251,4 +289,3 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
-

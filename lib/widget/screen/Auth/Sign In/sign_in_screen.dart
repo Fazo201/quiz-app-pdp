@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/core/route/app_route_path.dart';
 import 'package:quiz_app/core/style/app_colors.dart';
 import 'package:quiz_app/core/style/app_images.dart';
 import 'package:quiz_app/core/style/app_text_style.dart';
+import 'package:quiz_app/services/auth_service.dart';
+import 'package:quiz_app/services/util_service.dart';
 import 'package:quiz_app/widget/custom%20widget/custom_richtext.dart';
 import '../../../custom widget/Custom TextField/custom_textfield.dart';
 
@@ -20,6 +23,18 @@ class _SignInScreenState extends State<SignInScreen> {
 
   bool obscureText = false;
   bool vision = true;
+
+  Future<void>login()async{
+    User? user = await AuthService.loginUser(context, email: emailC.text, password: passC.text);
+    if (user!=null) {
+      if (mounted) {
+        Utils.fireSnackBar("Successfully",context);
+        context.go(AppRoutePath.home);
+      }
+    }else{
+      Utils.fireSnackBar("There is no such email address or password",context,error: true);
+    }
+  }
 
   @override
   void dispose() {
@@ -96,7 +111,7 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             const SizedBox(height: 25),
             MaterialButton(
-              onPressed: () {},
+              onPressed: () async => await login(),
               color: AppColors.l00B533,
               height: 60,
               minWidth: double.infinity,

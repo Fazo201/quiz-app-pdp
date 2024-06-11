@@ -49,7 +49,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
           }
         }
       }else{
-        Utils.fireSnackBar("Pin code is not filled",context,error: true);
+        Utils.fireSnackBar("The pin code is incorrect",context,error: true);
       }
     }
 
