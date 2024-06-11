@@ -7,7 +7,6 @@ import 'package:pinput/pinput.dart';
 import 'package:quiz_app/core/route/app_route_path.dart';
 import 'package:quiz_app/core/style/app_colors.dart';
 import 'package:quiz_app/core/style/app_images.dart';
-import 'package:quiz_app/models/firebase_model.dart';
 import 'package:quiz_app/models/otp_model.dart';
 import 'package:quiz_app/services/auth_service.dart';
 import 'package:quiz_app/services/util_service.dart';
