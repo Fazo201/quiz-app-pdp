@@ -6,6 +6,7 @@ import '../../../../core/style/app_colors.dart';
 import '../../../../core/style/app_images.dart';
 import '../../../../core/style/app_text_style.dart';
 import '../../../custom widget/Custom TextField/custom_textfield.dart';
+import '../../../custom widget/custom_checkbox.dart';
 import '../../../custom widget/custom_richtext.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -21,7 +22,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailC = TextEditingController();
   TextEditingController passC = TextEditingController();
 
-  bool checkBox = false;
   bool obscureText = false;
   bool vision = true;
 
@@ -102,42 +102,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     setState(() {});
                   },
                   icon: vision
-                      ? const Icon(Icons.visibility,
-                      color: Color(0xFFADADAD))
+                      ? const Icon(Icons.visibility, color: Color(0xFFADADAD))
                       : const Icon(Icons.visibility_off,
-                      color: Color(0xFFADADAD))),
-              onTap: (){
+                          color: Color(0xFFADADAD))),
+              onTap: () {
                 setState(() {
                   obscureText = !obscureText;
                 });
               },
             ),
             const SizedBox(height: 20),
-            Row(
-              children: [
-                IconButton(
-                  color: AppColors.lD9D9D9,
-                  style: ButtonStyle(
-                    shadowColor:
-                        WidgetStateProperty.all<Color>(Colors.transparent),
-                  ),
-                  onPressed: () {
-                    checkBox = !checkBox;
-                    setState(() {});
-                  },
-                  icon: checkBox
-                      ? const Icon(Icons.check_box)
-                      : const Icon(Icons.check_box_outline_blank),
-                ),
-                Text(
-                  "Accept terms & Condition",
-                  style: const AppTextStyle().bodySmall?.copyWith(
-                        color: AppColors.lD9D9D9,
-                        fontSize: 11,
-                      ),
-                ),
-              ],
-            ),
+            const CustomCheckbox(),
             const SizedBox(height: 21),
             MaterialButton(
               onPressed: () {
@@ -183,14 +158,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             const Spacer(),
-            AppImages.googleLogo,
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.10),
+                    spreadRadius: 4,
+                    blurRadius: 4,
+                    offset: const Offset(0, 0), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: AppImages.googleLogo,
+            ),
             const Spacer(),
             CustomRichText(
               text: "Already have an account?",
               navigateText: "Sign In",
-              onTap: () {
-                context.pop();
-              },
+              onTap: () => context.pop(),
             ),
             const Spacer(),
           ],

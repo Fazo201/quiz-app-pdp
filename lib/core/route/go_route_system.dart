@@ -3,10 +3,6 @@ import 'package:quiz_app/core/route/app_route_name.dart';
 import 'package:quiz_app/widget/screen/Auth/Sign%20In/sign_in_screen.dart';
 import 'package:quiz_app/widget/screen/Auth/Sign%20Up/sign_up_screen.dart';
 import 'package:quiz_app/widget/screen/Auth/Sign%20Up/verification_code_screen.dart';
-import 'package:quiz_app/widget/screen/Main/Home%20root/Home%20category/Difficulity%20selection/Quiz/quiz_game_result_screen.dart';
-import 'package:quiz_app/widget/screen/Main/Home%20root/Home%20category/Difficulity%20selection/Quiz/quiz_game_screen.dart';
-import 'package:quiz_app/widget/screen/Main/Home%20root/Home%20category/Difficulity%20selection/difficulty_selection_screen.dart';
-import 'package:quiz_app/widget/screen/Main/Home%20root/Home%20category/selected_category_screen_from_home_screen.dart';
 import 'package:quiz_app/widget/screen/Main/Home%20root/home_screen.dart';
 import 'package:quiz_app/widget/screen/Main/Level%20root/level_screen.dart';
 import 'package:quiz_app/widget/screen/Main/Level%20root/selected_category_screen_from_level_screen.dart';
@@ -14,10 +10,15 @@ import 'package:quiz_app/widget/screen/Main/Profile/profile_screen.dart';
 import 'package:quiz_app/widget/screen/Main/main_screen.dart';
 import 'package:quiz_app/widget/screen/Splash/splash_screen.dart';
 
+import '../../widget/screen/Main/Home root/Difficulity selection/Home category/Quiz/quiz_game_result_screen.dart';
+import '../../widget/screen/Main/Home root/Difficulity selection/Home category/Quiz/quiz_game_screen.dart';
+import '../../widget/screen/Main/Home root/Difficulity selection/Home category/selected_category_screen_from_home_screen.dart';
+import '../../widget/screen/Main/Home root/Difficulity selection/difficulty_selection_screen.dart';
+
 final class GoRouteSystem {
   static GoRouter router = GoRouter(
     /// Initial Location
-    initialLocation: AppRouteName.signIn,
+    initialLocation: AppRouteName.splash,
 
     routes: [
       /// Splash screen

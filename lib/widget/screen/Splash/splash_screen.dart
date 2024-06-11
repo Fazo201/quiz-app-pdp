@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(
       const Duration(seconds: 2),
-      () => context.go(AppRouteName.home),
+      () => context.go(AppRouteName.signIn),
     );
   }
 

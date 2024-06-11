@@ -136,7 +136,23 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
             ),
             const SizedBox(height: 30),
-            AppImages.googleLogo,
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.10),
+                    spreadRadius: 4,
+                    blurRadius: 4,
+                    offset: const Offset(0, 0), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: AppImages.googleLogo,
+            ),
             const Spacer(),
             CustomRichText(
               text: "Don't have an account?",
