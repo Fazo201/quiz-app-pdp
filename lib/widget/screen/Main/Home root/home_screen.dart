@@ -15,14 +15,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   
   List<CustomHomeCategory> list = [
-    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeFlutterLogo,text: "Flutter",goLocation: "${AppRouteName.home}/${AppRouteName.homeCategory}",),
-    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homePythonLogo,text: "Phyton",),
-    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeFrontendLogo,text: "Frontend",),
-    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeJavaLogo,text: "Java",),
-    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeCPlusLogo,text: "C++",),
-    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeCSharpLogo,text: "C#",),
-    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeAndroidLogo,text: "Android",),
-    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeIOSLogo,text: "IOS",),
+    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeFlutterLogo,text: "Flutter", goLocation: "${AppRouteName.home}/${AppRouteName.difficultySelection}"),
+    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homePythonLogo,text: "Phyton", goLocation: "${AppRouteName.home}/${AppRouteName.difficultySelection}"),
+    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeFrontendLogo,text: "Frontend", goLocation: "${AppRouteName.home}/${AppRouteName.difficultySelection}"),
+    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeJavaLogo,text: "Java", goLocation: "${AppRouteName.home}/${AppRouteName.difficultySelection}"),
+    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeCPlusLogo,text: "C++", goLocation: "${AppRouteName.home}/${AppRouteName.difficultySelection}"),
+    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeCSharpLogo,text: "C#", goLocation: "${AppRouteName.home}/${AppRouteName.difficultySelection}"),
+    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeAndroidLogo,text: "Android", goLocation: "${AppRouteName.home}/${AppRouteName.difficultySelection}"),
+    CustomHomeCategory(color: AppColors.lF5F5F5,image: AppImages.homeIOSLogo,text: "IOS", goLocation: "${AppRouteName.home}/${AppRouteName.difficultySelection}"),
   ];
 
   @override

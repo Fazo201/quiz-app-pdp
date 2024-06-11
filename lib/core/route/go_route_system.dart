@@ -58,12 +58,12 @@ final class GoRouteSystem {
             builder: (context, state) => const HomeScreen(),
             routes: [
               GoRoute(
-                path: AppRouteName.homeCategory,
-                builder: (context, state) => const SelectedCategoryScreenFromHomeScreen(),
+                path: AppRouteName.difficultySelection,
+                builder: (context, state) => const DifficultySelectionScreen(),
                 routes: [
                   GoRoute(
-                    path: AppRouteName.difficultySelection,
-                    builder: (context, state) => const DifficultySelectionScreen(),
+                    path: AppRouteName.homeCategory,
+                    builder: (context, state) => const SelectedCategoryScreenFromHomeScreen(),
                     routes: [
                       GoRoute(
                         path: AppRouteName.quizGame,
