@@ -28,6 +28,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
   }
 
   void startTimer() {
+    _start = 15;
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_start == 0) {
         _timer.cancel();
@@ -39,19 +40,58 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
     });
   }
 
-  void reStartTimer() {
-    _start = 0;
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_start == 0) {
-        _timer.cancel();
-      } else {
-        setState(() {
-          _start--;
-        });
-      }
-    });
-    startTimer();
-  }
+  List<List<String>> answersList = [
+    [
+      "UI toolkit by Google", // Correct answer
+      "Operating system",
+      "Database system"
+    ],
+    [
+      "Developed by Google", // Correct answer
+      "Developed by Facebook",
+      "Developed by Microsoft"
+    ],
+    [
+      "Dart programming language", // Correct answer
+      "JavaScript",
+      "Python"
+    ],
+    [
+      "Stateful: dynamic, Stateless: static", // Correct answer
+      "Both are static",
+      "Both are dynamic"
+    ],
+    [
+      "Extend Stateless or StatefulWidget", // Correct answer
+      "Use main.dart file",
+      "Define in XML"
+    ],
+    [
+      "Manage dependencies and assets", // Correct answer
+      "Configure IDE settings",
+      "Define API endpoints"
+    ],
+    [
+      "setState, Provider, Bloc", // Correct answer
+      "Use only setState",
+      "Use global variables"
+    ],
+    [
+      "Dart, engine, widgets, library", // Correct answer
+      "Java, XML, SQLite",
+      "HTML, CSS, JavaScript"
+    ],
+    [
+      "Navigator.push and pop", // Correct answer
+      "Route.push and Route.pop",
+      "Screen.push and Screen.pop"
+    ],
+    [
+      "Describe widget's UI", // Correct answer
+      "Handle user input",
+      "Manage app lifecycle"
+    ]
+  ];
 
   var questionsAndAnswers = [
   {
@@ -190,7 +230,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                 ),
               ),
               child: MaterialButton(
-                onPressed: () {
+                onPressed: () { 
                     if(indexTestList<9){
                       setState(() {
                         indexTestList++;
@@ -200,7 +240,6 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                       context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}/${AppRoutePath.quizGame}/${AppRoutePath.quizGameResult}");
                     }
                 },
-                // color: AppColors.l00B533,
                 height: 54,
                 minWidth: double.infinity,
                 shape: OutlineInputBorder(
@@ -221,7 +260,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                                 fontWeight: FontWeight.w600),
                           ),
                           TextSpan(
-                              text: questionsAndAnswers[indexTestList].values.lastWhere((e)=>e is String).toString(),
+                              text: answersList[indexTestList].first.length>25? answersList[indexTestList].first.substring(0,25):answersList[indexTestList].first,  /// Why is it not working?
                               style: const TextStyle(
                                   fontFamily: "Poppins",
                                   fontSize: 18,
@@ -260,10 +299,10 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                 child: Row(
                   children: [
                     RichText(
-                      text: const TextSpan(
-                        style: TextStyle(color: Colors.black),
+                      text: TextSpan(
+                        style: const TextStyle(color: Colors.black),
                         children: <TextSpan>[
-                          TextSpan(
+                          const TextSpan(
                             text: 'B. ',
                             style: TextStyle(
                                 fontFamily: "Poppins",
@@ -271,8 +310,8 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                                 fontWeight: FontWeight.w600),
                           ),
                           TextSpan(
-                              text: 'Lorem Ipsum',
-                              style: TextStyle(
+                              text: answersList[indexTestList][1].length>25? answersList[indexTestList][1].substring(0,25):answersList[indexTestList][1],
+                              style: const TextStyle(
                                   fontFamily: "Poppins",
                                   fontSize: 18,
                                   fontWeight: FontWeight.w400)),
@@ -310,10 +349,10 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                 child: Row(
                   children: [
                     RichText(
-                      text: const TextSpan(
-                        style: TextStyle(color: Colors.black),
+                      text: TextSpan(
+                        style: const TextStyle(color: Colors.black),
                         children: <TextSpan>[
-                          TextSpan(
+                          const TextSpan(
                             text: 'C. ',
                             style: TextStyle(
                                 fontFamily: "Poppins",
@@ -321,8 +360,8 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                                 fontWeight: FontWeight.w600),
                           ),
                           TextSpan(
-                              text: 'Phasellus auctor',
-                              style: TextStyle(
+                              text: answersList[indexTestList][2].length>25? answersList[indexTestList][2].substring(0,25):answersList[indexTestList][2],
+                              style: const TextStyle(
                                   fontFamily: "Poppins",
                                   fontSize: 18,
                                   fontWeight: FontWeight.w400)),

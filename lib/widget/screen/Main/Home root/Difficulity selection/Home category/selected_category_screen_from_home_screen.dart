@@ -201,6 +201,7 @@ class _SelectedCategoryScreenFromHomeScreenState
                       },
                     ),
                   ),
+                  if(isOpen)
                   Column(children: [
                     ListTile(
                       title: Text(dropDownMenuList[0]),
@@ -247,7 +248,7 @@ class _SelectedCategoryScreenFromHomeScreenState
                         ),
                       ),
                     )
-                  ])
+                  ],),
                 ],
               ),
             );

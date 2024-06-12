@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quiz_app/core/route/app_route_path.dart';
 
 import '../../../../../../../core/style/app_colors.dart';
 import '../../../../../../../core/style/app_images.dart';
@@ -182,7 +184,9 @@ class _QuizGameResultScreenState extends State<QuizGameResultScreen> {
                 ),
               ),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}");
+                },
                 height: 54,
                 minWidth: double.infinity,
                 shape: OutlineInputBorder(
@@ -206,7 +210,9 @@ class _QuizGameResultScreenState extends State<QuizGameResultScreen> {
                 ),
               ),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.go(AppRoutePath.home);
+                },
                 height: 54,
                 minWidth: double.infinity,
                 shape: OutlineInputBorder(
