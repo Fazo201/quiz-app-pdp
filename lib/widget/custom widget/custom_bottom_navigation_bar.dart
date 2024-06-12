@@ -14,9 +14,14 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
+    return ClipPath(
+      clipper: MyCustomClipper(),
+      child: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: onTap,
+        selectedFontSize: 20,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         items: [
           BottomNavigationBarItem(
             icon: AppImages.bottomHomeLogo,
@@ -35,6 +40,25 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ),
         ],
         backgroundColor: AppColors.white,
-      );
+      ),
+    );
+  }
+}
+
+class MyCustomClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.lineTo(0, 20);
+    path.quadraticBezierTo(size.width * 0.5, 0, size.width, 20);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
   }
 }

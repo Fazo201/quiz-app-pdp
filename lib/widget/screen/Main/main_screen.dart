@@ -35,12 +35,16 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: widget.child,
-      bottomNavigationBar: CustomBottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: nextScreen,
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          widget.child,
+          CustomBottomNavigationBar(
+            currentIndex: currentIndex,
+            onTap: nextScreen,
+          ),
+        ],
       ),
     );
   }
 }
-

@@ -67,7 +67,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xffF6F6F6),
+      backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.white,
         actions: [
@@ -107,116 +107,120 @@ class _ProfileScreenState extends State<ProfileScreen> {
           )
         ],
       ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: AppColors.white,
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  height: 219,
-                  width: double.infinity,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MaterialButton(
-                        onPressed: onPressed,
-                        onLongPress: onLongPress,
-                        height: 109,
-                        minWidth: 109,
-                        shape: const CircleBorder(),
-                        child: CircleAvatar(
-                          radius: 55,
-                          backgroundColor: Colors.transparent,
-                          backgroundImage: profileImage(file: file),
-                          child:
-                              file == null ? AppImages.profilePersonIcon : null,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 48,
-                        width: double.infinity,
-                        child: Column(
-                          children: [
-                            Text(
-                              "User name",
-                              style: const AppTextStyle().titleSmall,
-                            ),
-                            Text(
-                              "${firebaseAuth.currentUser?.displayName?.split('/')[0]} ${firebaseAuth.currentUser?.displayName?.split('/')[1]}",
-                              style: const AppTextStyle().profileTitle,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 48,
-                        width: double.infinity,
-                        child: Column(
-                          children: [
-                            Text(
-                              "User email",
-                              style: const AppTextStyle().titleSmall,
-                            ),
-                            Text(
-                              "${firebaseAuth.currentUser?.email}",
-                              style: const AppTextStyle().profileTitle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MaterialButton(
+                onPressed: onPressed,
+                onLongPress: onLongPress,
+                height: 109,
+                minWidth: 109,
+                shape: const CircleBorder(),
+                child: CircleAvatar(
+                  radius: 55,
+                  backgroundColor: Colors.transparent,
+                  backgroundImage: profileImage(file: file),
+                  child:
+                      file == null ? AppImages.profilePersonIcon : null,
                 ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Divider(
-                        color: AppColors.lD9D9D9,
-                      ),
-                      SizedBox(
-                        height: 36,
-                        width: 155,
-                        child: Text(
-                          "Enter your information to make changes",
-                          style: const AppTextStyle().titleSmall,
-                        ),
-                      ),
-                      CustomTextField(
-                          hintText: "Enter First Name",
-                          controller: nameC,
-                          keyBoardType: TextInputType.name,
-                          labelText: "First Name",
-                          textInputAction: TextInputAction.next),
-                      CustomTextField(
-                          hintText: "Enter Last Name",
-                          controller: lastC,
-                          keyBoardType: TextInputType.name,
-                          labelText: "Last Name",
-                          textInputAction: TextInputAction.next),
-                      CustomTextField(
-                          hintText: "Enter Password",
-                          controller: passwordC,
-                          keyBoardType: TextInputType.name,
-                          labelText: "Password",
-                          textInputAction: TextInputAction.next),
-                      CustomTextField(
-                          hintText: "Retype Password",
-                          controller: nameC,
-                          keyBoardType: TextInputType.name,
-                          labelText: "Confirm Password",
-                          textInputAction: TextInputAction.next),
-                    ],
-                  ),
+              ),
+              SizedBox(
+                height: 48,
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    Text(
+                      "User name",
+                      style: const AppTextStyle().titleSmall,
+                    ),
+                    Text(
+                      "${firebaseAuth.currentUser?.displayName?.split('/')[0]} ${firebaseAuth.currentUser?.displayName?.split('/')[1]}",
+                      style: const AppTextStyle().profileTitle,
+                    ),
+                  ],
                 ),
-              ],
+              ),
+              SizedBox(
+                height: 48,
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    Text(
+                      "User email",
+                      style: const AppTextStyle().titleSmall,
+                    ),
+                    Text(
+                      "${firebaseAuth.currentUser?.email}",
+                      style: const AppTextStyle().profileTitle,
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Divider(
+                      color: AppColors.lD9D9D9,
+                    ),
+                    SizedBox(
+                      height: 36,
+                      width: 155,
+                      child: Text(
+                        "Enter your information to make changes",
+                        style: const AppTextStyle().titleSmall,
+                      ),
+                    ),
+                    CustomTextField(
+                        hintText: "Enter First Name",
+                        controller: nameC,
+                        keyBoardType: TextInputType.name,
+                        labelText: "First Name",
+                        textInputAction: TextInputAction.next),
+                    CustomTextField(
+                        hintText: "Enter Last Name",
+                        controller: lastC,
+                        keyBoardType: TextInputType.name,
+                        labelText: "Last Name",
+                        textInputAction: TextInputAction.next),
+                    CustomTextField(
+                        hintText: "Enter Password",
+                        controller: passwordC,
+                        keyBoardType: TextInputType.name,
+                        labelText: "Password",
+                        textInputAction: TextInputAction.next),
+                    CustomTextField(
+                        hintText: "Retype Password",
+                        controller: nameC,
+                        keyBoardType: TextInputType.name,
+                        labelText: "Confirm Password",
+                        textInputAction: TextInputAction.next),
+                    MaterialButton(
+              onPressed: () {},
+              color: AppColors.l00B533,
+              height: 60,
+              minWidth: double.infinity,
+              shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(11),
+                borderSide: BorderSide.none,
+              ),
+              child: Text(
+                "Change",
+                style: const AppTextStyle().titleMedium?.copyWith(
+                  color: AppColors.white,
+                  fontSize: 16,
+                ),
+              ),
             ),
+                    const SizedBox(height: 40,)
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
