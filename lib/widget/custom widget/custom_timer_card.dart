@@ -28,6 +28,7 @@ class _CustomCardWithTimerState extends State<CustomCardWithTimer> {
               border: Border.all(color: Colors.white, width: 2)
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(height: 15),

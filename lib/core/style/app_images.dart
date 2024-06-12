@@ -45,8 +45,9 @@ sealed class AppImages {
   );
 
   static final largeFlutter = SvgPicture.asset(
-    'assets/images/large_flutter.svg',
-
+    'assets/images/flutter_logo.svg',
+    height: 115,
+    width: 111,
     fit: BoxFit.cover,
   );
 

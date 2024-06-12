@@ -49,6 +49,7 @@ class _DifficultySelectionScreenState extends State<DifficultySelectionScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             children: [
+              const SizedBox(height: 15,),
               Expanded(
                 flex: 1,
                 child: Container(
@@ -134,7 +135,8 @@ class _DifficultySelectionScreenState extends State<DifficultySelectionScreen> {
                     const SizedBox(height: 20),
                     MaterialButton(
                       onPressed: () {
-                        context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}");                      },
+                        context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}"); 
+                      },
                       color: AppColors.l00B533,
                       height: 60,
                       minWidth: double.infinity,

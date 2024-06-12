@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 import 'package:quiz_app/widget/custom%20widget/custom_timer_card.dart';
@@ -16,7 +17,7 @@ class QuizGameScreen extends StatefulWidget {
 
 class _QuizGameScreenState extends State<QuizGameScreen> {
   late Timer _timer;
-  int _start = 60;
+  int _start = 15;
 
   @override
   void initState() {
@@ -37,6 +38,90 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
       }
     });
   }
+
+  var questionsAndAnswers = [
+  {
+    "question": "What is Flutter?",
+    "answers": [
+      "UI toolkit by Google", // Correct answer
+      "Operating system",
+      "Database system"
+    ]
+  },
+  {
+    "question": "Who developed Flutter?",
+    "answers": [
+      "Developed by Google", // Correct answer
+      "Developed by Facebook",
+      "Developed by Microsoft"
+    ]
+  },
+  {
+    "question": "What language does Flutter use?",
+    "answers": [
+      "Dart programming language", // Correct answer
+      "JavaScript",
+      "Python"
+    ]
+  },
+  {
+    "question": "Difference between Stateful and Stateless widgets?",
+    "answers": [
+      "Stateful: dynamic, Stateless: static", // Correct answer
+      "Both are static",
+      "Both are dynamic"
+    ]
+  },
+  {
+    "question": "How to define a custom widget?",
+    "answers": [
+      "Extend Stateless or StatefulWidget", // Correct answer
+      "Use main.dart file",
+      "Define in XML"
+    ]
+  },
+  {
+    "question": "Purpose of `pubspec.yaml` file?",
+    "answers": [
+      "Manage dependencies and assets", // Correct answer
+      "Configure IDE settings",
+      "Define API endpoints"
+    ]
+  },
+  {
+    "question": "How to handle state in Flutter?",
+    "answers": [
+      "setState, Provider, Bloc", // Correct answer
+      "Use only setState",
+      "Use global variables"
+    ]
+  },
+  {
+    "question": "Main components of Flutter?",
+    "answers": [
+      "Dart, engine, widgets, library", // Correct answer
+      "Java, XML, SQLite",
+      "HTML, CSS, JavaScript"
+    ]
+  },
+  {
+    "question": "How to navigate between screens?",
+    "answers": [
+      "Navigator.push and pop", // Correct answer
+      "Route.push and Route.pop",
+      "Screen.push and Screen.pop"
+    ]
+  },
+  {
+    "question": "Use of `build` method?",
+    "answers": [
+      "Describe widget's UI", // Correct answer
+      "Handle user input",
+      "Manage app lifecycle"
+    ]
+  }
+];
+
 
   @override
   void dispose() {
@@ -80,8 +165,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
           children: [
             const SizedBox(height: 60),
             CustomCardWithTimer(
-                text:
-                    "1. Lorem ipsum dolor sit amet, consectetu adipiscing elit. Quisque sit amet velit malesuada, scelerisque diam.",
+                text: questionsAndAnswers[0].values.first.toString(),
                 time: "$_start"),
             const Spacer(),
             Container(
@@ -114,7 +198,8 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                                 fontWeight: FontWeight.w600),
                           ),
                           TextSpan(
-                              text: 'Quisque sit',
+                              // text: 'Quisque sit',
+                              text: "",
                               style: TextStyle(
                                   fontFamily: "Poppins",
                                   fontSize: 18,
