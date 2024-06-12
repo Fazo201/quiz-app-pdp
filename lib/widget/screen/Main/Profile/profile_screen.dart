@@ -200,22 +200,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         labelText: "Confirm Password",
                         textInputAction: TextInputAction.next),
                     MaterialButton(
-              onPressed: () {},
-              color: AppColors.l00B533,
-              height: 60,
-              minWidth: double.infinity,
-              shape: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(11),
-                borderSide: BorderSide.none,
-              ),
-              child: Text(
-                "Change",
-                style: const AppTextStyle().titleMedium?.copyWith(
-                  color: AppColors.white,
-                  fontSize: 16,
-                ),
-              ),
-            ),
+                      onPressed: () {},
+                      color: AppColors.l00B533,
+                      height: 60,
+                      minWidth: double.infinity,
+                      shape: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(11),
+                        borderSide: BorderSide.none,
+                      ),
+                      child: Text(
+                        "Change",
+                        style: const AppTextStyle().titleMedium?.copyWith(
+                              color: AppColors.white,
+                              fontSize: 16,
+                            ),
+                      ),
+                    ),
                     const SizedBox(height: 40,)
                   ],
                 ),
