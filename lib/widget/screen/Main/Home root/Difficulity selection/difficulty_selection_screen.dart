@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quiz_app/core/route/app_route_name.dart';
 import 'package:quiz_app/core/style/app_colors.dart';
 import 'package:quiz_app/core/style/app_images.dart';
 import 'package:quiz_app/core/style/app_text_style.dart';
