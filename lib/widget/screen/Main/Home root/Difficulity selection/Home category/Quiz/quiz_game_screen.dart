@@ -1,7 +1,8 @@
 import 'dart:async';
-import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quiz_app/core/route/app_route_path.dart';
 import 'package:quiz_app/widget/custom%20widget/custom_timer_card.dart';
 
 import '../../../../../../../core/style/app_colors.dart';
@@ -18,6 +19,7 @@ class QuizGameScreen extends StatefulWidget {
 class _QuizGameScreenState extends State<QuizGameScreen> {
   late Timer _timer;
   int _start = 15;
+  int indexTestList = 0;
 
   @override
   void initState() {
@@ -28,15 +30,27 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
   void startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_start == 0) {
-        setState(() {
-          _timer.cancel();
-        });
+        _timer.cancel();
       } else {
         setState(() {
           _start--;
         });
       }
     });
+  }
+
+  void reStartTimer() {
+    _start = 0;
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_start == 0) {
+        _timer.cancel();
+      } else {
+        setState(() {
+          _start--;
+        });
+      }
+    });
+    startTimer();
   }
 
   var questionsAndAnswers = [
@@ -165,7 +179,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
           children: [
             const SizedBox(height: 60),
             CustomCardWithTimer(
-                text: questionsAndAnswers[0].values.first.toString(),
+                text: questionsAndAnswers[indexTestList].values.first.toString(),
                 time: "$_start"),
             const Spacer(),
             Container(
@@ -176,7 +190,16 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                 ),
               ),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                    if(indexTestList<9){
+                      setState(() {
+                        indexTestList++;
+                        startTimer();
+                      });
+                    }else{
+                      context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}/${AppRoutePath.quizGame}/${AppRoutePath.quizGameResult}");
+                    }
+                },
                 // color: AppColors.l00B533,
                 height: 54,
                 minWidth: double.infinity,
@@ -187,10 +210,10 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                 child: Row(
                   children: [
                     RichText(
-                      text: const TextSpan(
-                        style: TextStyle(color: Colors.black),
+                      text: TextSpan(
+                        style: const TextStyle(color: Colors.black),
                         children: <TextSpan>[
-                          TextSpan(
+                          const TextSpan(
                             text: 'A. ',
                             style: TextStyle(
                                 fontFamily: "Poppins",
@@ -198,9 +221,8 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                                 fontWeight: FontWeight.w600),
                           ),
                           TextSpan(
-                              // text: 'Quisque sit',
-                              text: "",
-                              style: TextStyle(
+                              text: questionsAndAnswers[indexTestList].values.lastWhere((e)=>e is String).toString(),
+                              style: const TextStyle(
                                   fontFamily: "Poppins",
                                   fontSize: 18,
                                   fontWeight: FontWeight.w400)),
@@ -219,7 +241,16 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                     color: AppColors.l00B533,
                   )),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                    if(indexTestList<9){
+                      setState(() {
+                        indexTestList++;
+                        startTimer();
+                      });
+                    }else{
+                      context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}/${AppRoutePath.quizGame}/${AppRoutePath.quizGameResult}");
+                    }
+                },
                 height: 54,
                 minWidth: double.infinity,
                 shape: OutlineInputBorder(
@@ -260,7 +291,16 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                     color: AppColors.l00B533,
                   )),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                    if(indexTestList<9){
+                      setState(() {
+                        indexTestList++;
+                        startTimer();
+                      });
+                    }else{
+                      context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}/${AppRoutePath.quizGame}/${AppRoutePath.quizGameResult}");
+                    }
+                },
                 height: 54,
                 minWidth: double.infinity,
                 shape: OutlineInputBorder(

@@ -158,6 +158,7 @@ class _DifficultySelectionScreenState extends State<DifficultySelectionScreen> {
               const Spacer(),
             ],
           ),
-        ));
+        ),
+      );
   }
 }
