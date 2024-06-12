@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:quiz_app/widget/custom%20widget/custom_timer_card.dart';
 
 import '../../../../../../../core/style/app_colors.dart';
 import '../../../../../../../core/style/app_images.dart';
@@ -12,6 +15,37 @@ class QuizGameScreen extends StatefulWidget {
 }
 
 class _QuizGameScreenState extends State<QuizGameScreen> {
+
+  late Timer _timer;
+  int _start = 60;
+
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  void startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_start == 0) {
+        setState(() {
+          _timer.cancel();
+        });
+      } else {
+        setState(() {
+          _start--;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,63 +81,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
         child: Column(
           children: [
             const SizedBox(height: 60),
-            Stack(
-              children: [
-                Column(
-                  children: [
-                    const SizedBox(height: 30),
-                    Container(
-                      height: 161,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        color: AppColors.l00B533,
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              textAlign: TextAlign.center,
-                              "1. Lorem ipsum dolor sit amet, consectetu adipiscing elit. Quisque sit amet velit malesuada, scelerisque diam non, blandit neque.",
-                              style: const AppTextStyle().richText?.copyWith(
-                                color: AppColors.white,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Center(
-                  child: Container(
-                    width: 52,
-                    height: 52,
-                    decoration: BoxDecoration(
-                      color: AppColors.l00B533,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: AppColors.l00B533,
-                        width: 2,
-                      )
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.l00B533,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: AppColors.white,
-                          width: 3,
-                        )
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            CustomCardWithTimer(text: "1. Lorem ipsum dolor sit amet, consectetu adipiscing elit. Quisque sit amet velit malesuada, scelerisque diam.", time: "$_start"),
             const Spacer(),
             Container(
               decoration: BoxDecoration(
