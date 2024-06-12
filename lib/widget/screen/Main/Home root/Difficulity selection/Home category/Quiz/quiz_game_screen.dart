@@ -15,7 +15,6 @@ class QuizGameScreen extends StatefulWidget {
 }
 
 class _QuizGameScreenState extends State<QuizGameScreen> {
-
   late Timer _timer;
   int _start = 60;
 
@@ -44,7 +43,6 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
     _timer.cancel();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -81,14 +79,18 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
         child: Column(
           children: [
             const SizedBox(height: 60),
-            CustomCardWithTimer(text: "1. Lorem ipsum dolor sit amet, consectetu adipiscing elit. Quisque sit amet velit malesuada, scelerisque diam.", time: "$_start"),
+            CustomCardWithTimer(
+                text:
+                    "1. Lorem ipsum dolor sit amet, consectetu adipiscing elit. Quisque sit amet velit malesuada, scelerisque diam.",
+                time: "$_start"),
             const Spacer(),
             Container(
               decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(15)),
-                  border: Border.all(
-                    color: AppColors.l00B533,
-                  )),
+                borderRadius: const BorderRadius.all(Radius.circular(15)),
+                border: Border.all(
+                  color: AppColors.l00B533,
+                ),
+              ),
               child: MaterialButton(
                 onPressed: () {},
                 // color: AppColors.l00B533,
