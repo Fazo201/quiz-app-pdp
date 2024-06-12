@@ -44,6 +44,12 @@ sealed class AppImages {
     fit: BoxFit.cover,
   );
 
+  static final largeFlutter = SvgPicture.asset(
+    'assets/images/large_flutter.svg',
+
+    fit: BoxFit.cover,
+  );
+
   static final homeFrontendLogo = SvgPicture.asset(
     'assets/images/frontend_logo.svg',
     height: 49,

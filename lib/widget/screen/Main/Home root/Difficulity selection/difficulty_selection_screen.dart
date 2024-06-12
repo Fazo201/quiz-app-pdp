@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quiz_app/core/route/app_route_name.dart';
 import 'package:quiz_app/core/style/app_colors.dart';
 import 'package:quiz_app/core/style/app_images.dart';
 import 'package:quiz_app/core/style/app_text_style.dart';
+
+import '../../../../../core/route/app_route_path.dart';
 
 class DifficultySelectionScreen extends StatefulWidget {
   const DifficultySelectionScreen({super.key});
@@ -62,17 +66,17 @@ class _DifficultySelectionScreenState extends State<DifficultySelectionScreen> {
                         textAlign: TextAlign.center,
                         "Welcome to I.Q",
                         style: const AppTextStyle().profileTitle?.copyWith(
-                          color: AppColors.white,
-                        ),
+                              color: AppColors.white,
+                            ),
                       ),
                       const SizedBox(height: 10),
                       Text(
                         textAlign: TextAlign.center,
                         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet velit malesuada, scelerisque diam non, blandit neque.",
                         style: const AppTextStyle().richText?.copyWith(
-                          color: AppColors.white,
-                          fontSize: 14,
-                        ),
+                              color: AppColors.white,
+                              fontSize: 14,
+                            ),
                       ),
                       const SizedBox(height: 10),
                     ],
@@ -91,7 +95,9 @@ class _DifficultySelectionScreenState extends State<DifficultySelectionScreen> {
                 child: Column(
                   children: [
                     MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}");
+                      },
                       color: AppColors.l00B533,
                       height: 60,
                       minWidth: double.infinity,
@@ -109,7 +115,8 @@ class _DifficultySelectionScreenState extends State<DifficultySelectionScreen> {
                     ),
                     const SizedBox(height: 20),
                     MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}");                      },
                       color: AppColors.l00B533,
                       height: 60,
                       minWidth: double.infinity,
@@ -127,7 +134,8 @@ class _DifficultySelectionScreenState extends State<DifficultySelectionScreen> {
                     ),
                     const SizedBox(height: 20),
                     MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}");                      },
                       color: AppColors.l00B533,
                       height: 60,
                       minWidth: double.infinity,
