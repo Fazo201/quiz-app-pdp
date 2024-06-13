@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/style/app_colors.dart';
 
 sealed class Utils {
   
   static void fireSnackBar(String msg, BuildContext context,{bool error = false}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: error?Colors.red:Colors.grey.shade400.withOpacity(0.975),
+        backgroundColor: error?Colors.red: AppColors.l00B533,
         content: Text(msg, style: const TextStyle(color: Colors.white, fontSize: 16), textAlign: TextAlign.center,),
         duration: const Duration(milliseconds: 2500),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),

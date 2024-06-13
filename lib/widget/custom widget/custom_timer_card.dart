@@ -34,6 +34,7 @@ class _CustomCardWithTimerState extends State<CustomCardWithTimer> {
               const SizedBox(height: 15),
               Center(
                 child: Text(
+                  textAlign: TextAlign.center,
                   widget.text,
                   style: const TextStyle(color: Colors.white, fontSize: 15, fontFamily: 'Poppins'),
                 ),
