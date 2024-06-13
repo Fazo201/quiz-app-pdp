@@ -10,6 +10,7 @@ import 'package:quiz_app/core/style/app_colors.dart';
 import 'package:quiz_app/core/style/app_images.dart';
 import 'package:quiz_app/core/style/app_text_style.dart';
 import 'package:quiz_app/services/auth_service.dart';
+import 'package:quiz_app/services/storage_service.dart';
 import 'package:quiz_app/widget/custom%20widget/Custom%20TextField/custom_textfield.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  File? file;
+  String? imageUrl;
   bool isCamera = false;
   TextEditingController nameC = TextEditingController();
   TextEditingController lastC = TextEditingController();
@@ -37,31 +38,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.dispose();
   }
 
-  Future<void> getImage() async {
+
+  Future<void> createImage() async {
     final ImagePicker picker = ImagePicker();
     XFile? xFile = await picker.pickImage(
       source: isCamera ? ImageSource.camera : ImageSource.gallery,
     );
     if (xFile != null) {
-      file = File(xFile.path);
+      await StorageService.upload(path: firebaseAuth.currentUser!.email.toString(), file: File(xFile.path));
+    }
+    await getImage();
+  }
+
+  Future<void> getImage()async{
+    final profileImage = await StorageService.getData(path: "${firebaseAuth.currentUser!.email.toString()}/profile_image.jpg");
+    if (profileImage!=null) {
+      imageUrl = profileImage;
+    }else{
+      imageUrl = null;
     }
     setState(() {});
   }
 
-  Future<void> deleteImage() async {
-    file = null;
+  Future<void> deleteImage()async{
+    await StorageService.deletePath(path: "${firebaseAuth.currentUser!.email.toString()}/profile_image.jpg");
+    await getImage();
     setState(() {});
   }
 
-  ImageProvider<Object>? profileImage({File? file}) {
-    return file != null ? Image.file(file).image : null;
-  }
 
   @override
   void initState() {
     firebaseAuth = FirebaseAuth.instance;
     super.initState();
   }
+
+  @override
+  void didChangeDependencies()async {
+    await getImage();
+    super.didChangeDependencies();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -122,9 +139,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: CircleAvatar(
                   radius: 55,
                   backgroundColor: Colors.transparent,
-                  backgroundImage: profileImage(file: file),
-                  child:
-                      file == null ? AppImages.profilePersonIcon : null,
+                  backgroundImage: NetworkImage(imageUrl.toString()),
+                  child: imageUrl == null ? AppImages.profilePersonIcon:null
                 ),
               ),
               SizedBox(
@@ -233,14 +249,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (context) {
         return SizedBox(
-          height: 120,
+          height: 180,
           child: Column(
             children: [
               MaterialButton(
                 onPressed: () async {
                   Navigator.pop(context);
                   isCamera = true;
-                  await getImage();
+                  await createImage();
                 },
                 minWidth: double.infinity,
                 child: const Text('Camera'),
@@ -249,7 +265,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onPressed: () async {
                   Navigator.pop(context);
                   isCamera = false;
-                  await getImage();
+                  await createImage();
                 },
                 minWidth: double.infinity,
                 child: const Text('Gallery'),
@@ -267,7 +283,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (context) {
         return SizedBox(
-          height: 120,
+          height: 180,
           child: Column(
             children: [
               MaterialButton(
