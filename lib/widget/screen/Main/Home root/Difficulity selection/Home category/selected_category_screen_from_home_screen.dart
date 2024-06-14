@@ -6,7 +6,8 @@ import 'package:quiz_app/core/style/app_images.dart';
 import 'package:quiz_app/core/style/app_text_style.dart';
 
 class SelectedCategoryScreenFromHomeScreen extends StatefulWidget {
-  const SelectedCategoryScreenFromHomeScreen({super.key});
+  final int difficultyTime;
+  const SelectedCategoryScreenFromHomeScreen({super.key, required this.difficultyTime});
 
   @override
   State<SelectedCategoryScreenFromHomeScreen> createState() =>
@@ -212,8 +213,7 @@ class _SelectedCategoryScreenFromHomeScreenState
                                   child: MaterialButton(
                                     color: AppColors.l00B533,
                                     onPressed: () {
-                                      context.go(
-                                          "${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}/${AppRoutePath.quizGame}");
+                                      context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}/${AppRoutePath.quizGame}", extra: widget.difficultyTime);
                                     },
                                     child: const Text(
                                       "Start Quiz",
@@ -237,88 +237,4 @@ class _SelectedCategoryScreenFromHomeScreenState
       ),
     );
   }
-
-  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem<String>(
-        value: item,
-        child: Text(
-          item,
-          style: const AppTextStyle().titleSmall?.copyWith(fontSize: 16),
-        ),
-      );
 }
-
-
-      // body: Padding(
-      //   padding: const EdgeInsets.symmetric(horizontal: 20),
-      //   child: Column(
-      //     children: [
-      //       SizedBox(
-      //         height: 38,
-      //         child: ListView.builder(
-      //           scrollDirection: Axis.horizontal,
-      //           itemCount: modules.length,
-      //           itemBuilder: (context, index) {
-      //             return GestureDetector(
-      //               onTap: () {
-      //                 setState(() {
-      //                   current = index;
-      //                 });
-      //               },
-      //               child: Container(
-      //                 margin: const EdgeInsets.only(right: 5),
-      //                 width: 74,
-      //                 decoration: BoxDecoration(
-      //                   color: current == index
-      //                       ? AppColors.l00B533
-      //                       : AppColors.lF5F5F5,
-      //                   borderRadius: const BorderRadius.all(
-      //                     Radius.circular(5),
-      //                   ),
-      //                 ),
-      //                 child: Center(
-      //                   child: Text(
-      //                     modules[index],
-      //                     style: const AppTextStyle().richText?.copyWith(
-      //                           fontSize: 12,
-      //                           color: current == index
-      //                               ? AppColors.white
-      //                               : AppColors.black,
-      //                         ),
-      //                   ),
-      //                 ),
-      //               ),
-      //             );
-      //           },
-      //         ),
-      //       ),
-      //       const SizedBox(height: 20),
-      //       SizedBox(
-      //         height: 30,
-      //         width: double.infinity,
-      //         child: DropdownButtonFormField<String>(
-      //           icon: const Icon(Icons.add),
-      //           isExpanded: true,
-      //           // disabledHint: Text("Select an item", style: const AppTextStyle().titleSmall),
-      //           value: value,
-      //           isDense: true,
-      //           dropdownColor: AppColors.white,
-      //           // alignment: AlignmentDirectional.bottomEnd,
-      //           hint: Text("1. Lorem Ipsum dolor sit amet",
-      //               style: const AppTextStyle().titleSmall),
-      //           items: dropDownMenuList.map(buildMenuItem).toList(),
-      //           onChanged: (value) {
-      //             setState(() {
-      //               this.value = value;
-      //             });
-      //           },
-      //           decoration: InputDecoration(
-      //             contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-      //             border: OutlineInputBorder(
-      //               borderRadius: BorderRadius.circular(5),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),

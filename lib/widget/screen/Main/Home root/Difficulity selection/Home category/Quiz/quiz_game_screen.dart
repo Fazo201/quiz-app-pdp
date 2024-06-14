@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,11 +8,11 @@ import 'package:quiz_app/core/style/app_images.dart';
 import 'package:quiz_app/core/style/app_text_style.dart';
 import 'package:quiz_app/widget/custom%20widget/custom_timer_card.dart';
 import '../../../../../../../core/route/app_route_path.dart';
-import '../../../../../../../core/style/app_colors.dart';
 import '../../../../../../custom widget/custom_button.dart';
 
 class QuizGameScreen extends StatefulWidget {
-  const QuizGameScreen({super.key});
+  final int difficultyTime;
+  const QuizGameScreen({super.key, required this.difficultyTime});
 
   @override
   State<QuizGameScreen> createState() => _QuizGameScreenState();
@@ -21,11 +20,19 @@ class QuizGameScreen extends StatefulWidget {
 
 class _QuizGameScreenState extends State<QuizGameScreen> {
   late Timer _timer;
-  int start = 15;
+  late int start;
+  int index = 0;
+  int correctAnswer = 0;
+  Color colorA = AppColors.l00B533;
+  Color colorB = AppColors.l00B533;
+  Color colorC = AppColors.l00B533;
+
+  List<Map<String, String>> choices = [];
 
   @override
   void initState() {
     super.initState();
+    start = widget.difficultyTime;
     pickThreeQuestions();
     startTimer();
   }
@@ -45,11 +52,26 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
   }
 
   void resetTimer() {
-    _timer.cancel();
-    setState(() {
-      start = 15;
-    });
-    startTimer();
+    if (index == 10) {
+      context.pushReplacement(
+        "${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}/${AppRoutePath.quizGame}/${AppRoutePath.quizGameResult}",
+        extra: correctAnswer,
+      );
+    } else {
+      _timer.cancel();
+      setState(() {
+        index++;
+        start = widget.difficultyTime;
+        resetColors();
+      });
+      startTimer();
+    }
+  }
+
+  void resetColors() {
+    colorA = AppColors.l00B533;
+    colorB = AppColors.l00B533;
+    colorC = AppColors.l00B533;
   }
 
   @override
@@ -68,8 +90,18 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
     allQuestions.shuffle(Random());
     setState(() {
       selectedQuestions = allQuestions.take(1).toList();
+      shuffleChoices(selectedQuestions![0].data() as Map<String, dynamic>);
       resetTimer();
     });
+  }
+
+  void shuffleChoices(Map<String, dynamic> questionData) {
+    choices = [
+      {'alpha': 'A', 'text': questionData['firstChoice'], 'isCorrect': 'false'},
+      {'alpha': 'B', 'text': questionData['secondChoice'], 'isCorrect': 'false'},
+      {'alpha': 'C', 'text': questionData['correctChoice'], 'isCorrect': 'true'},
+    ];
+    choices.shuffle(Random());
   }
 
   @override
@@ -114,63 +146,67 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
         child: Column(
           children: [
             const SizedBox(height: 60),
-
             /// Top container
             CustomCardWithTimer(
               text: questionData['question'] ?? 'No question available',
               time: "$start",
             ),
             const Spacer(),
-            Container(
-              height: 54,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(
-                  color: AppColors.l00B533,
+            ...choices.map((choice) {
+              Color borderColor;
+              switch (choice['alpha']) {
+                case 'A':
+                  borderColor = colorA;
+                  break;
+                case 'B':
+                  borderColor = colorB;
+                  break;
+                case 'C':
+                  borderColor = colorC;
+                  break;
+                default:
+                  borderColor = AppColors.l00B533;
+              }
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Container(
+                  height: 54,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    border: Border.all(
+                      color: borderColor,
+                    ),
+                  ),
+                  child: CustomQuizButton(
+                    alpha: choice['alpha']!,
+                    text: choice['text']!,
+                    onPressed: () {
+                      setState(() {
+                        if (choice['isCorrect'] == 'true') {
+                          correctAnswer++;
+                          if (choice['alpha'] == 'A') {
+                            colorA = AppColors.l00B533;
+                          } else if (choice['alpha'] == 'B') {
+                            colorB = AppColors.l00B533;
+                          } else {
+                            colorC = AppColors.l00B533;
+                          }
+                        } else {
+                          if (choice['alpha'] == 'A') {
+                            colorA = AppColors.lFF0000;
+                          } else if (choice['alpha'] == 'B') {
+                            colorB = AppColors.lFF0000;
+                          } else {
+                            colorC = AppColors.lFF0000;
+                          }
+                        }
+                        pickThreeQuestions();
+                      });
+                    },
+                  ),
                 ),
-              ),
-              child: CustomQuizButton(
-                alpha: "A",
-                text: questionData['firstChoice'] ?? 'No choice available',
-                onPressed: () {
-                  pickThreeQuestions();
-                },
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              height: 54,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(
-                  color: AppColors.l00B533,
-                ),
-              ),
-              child: CustomQuizButton(
-                alpha: "B",
-                text: questionData['secondChoice'] ?? 'No choice available',
-                onPressed: () {
-                  pickThreeQuestions();
-                },
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              height: 54,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(20)),
-                border: Border.all(
-                  color: AppColors.l00B533,
-                ),
-              ),
-              child: CustomQuizButton(
-                alpha: "C",
-                text: questionData['correctChoice'] ?? 'No choice available',
-                onPressed: () {
-                  pickThreeQuestions();
-                },
-              ),
-            ),
+              );
+            }).toList(),
             const Spacer(),
           ],
         ),

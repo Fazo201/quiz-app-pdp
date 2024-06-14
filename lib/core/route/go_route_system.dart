@@ -28,11 +28,13 @@ final class GoRouteSystem {
         path: AppRoutePath.splash,
         builder: (context, state) => const SplashScreen(),
       ),
+
       /// Auth Gate
       GoRoute(
         path: AppRoutePath.authGate,
         builder: (context, state) => const AuthGate(),
       ),
+
       /// Auth
       GoRoute(
         path: AppRoutePath.signIn,
@@ -70,15 +72,24 @@ final class GoRouteSystem {
                 routes: [
                   GoRoute(
                     path: AppRoutePath.homeCategory,
-                    builder: (context, state) => const SelectedCategoryScreenFromHomeScreen(),
+                    builder: (context, state) {
+                      final int difficultyTime = state.extra as int;
+                      return SelectedCategoryScreenFromHomeScreen(difficultyTime: difficultyTime);
+                    },
                     routes: [
                       GoRoute(
                         path: AppRoutePath.quizGame,
-                        builder: (context, state) => const QuizGameScreen(),
+                        builder: (context, state) {
+                          final int difficultyTime = state.extra as int;
+                          return QuizGameScreen(difficultyTime: difficultyTime);
+                        },
                         routes: [
                           GoRoute(
                             path: AppRoutePath.quizGameResult,
-                            builder: (context, state) => const QuizGameResultScreen(),
+                            builder: (context, state) {
+                              final int correctAnswer = state.extra as int;
+                              return QuizGameResultScreen(correctAnswer: correctAnswer);
+                            },
                           ),
                         ],
                       ),
@@ -94,7 +105,8 @@ final class GoRouteSystem {
             routes: [
               GoRoute(
                 path: AppRoutePath.levelCategory,
-                builder: (context, state) => const SelectedCategoryScreenFromLevelScreen(),
+                builder: (context, state) =>
+                    const SelectedCategoryScreenFromLevelScreen(),
               ),
             ],
           ),

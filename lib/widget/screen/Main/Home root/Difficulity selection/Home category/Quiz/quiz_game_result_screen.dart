@@ -7,7 +7,9 @@ import '../../../../../../../core/style/app_images.dart';
 import '../../../../../../../core/style/app_text_style.dart';
 
 class QuizGameResultScreen extends StatefulWidget {
-  const QuizGameResultScreen({super.key});
+  final int correctAnswer;
+
+  const QuizGameResultScreen({super.key, required this.correctAnswer});
 
   @override
   State<QuizGameResultScreen> createState() => _QuizGameResultScreenState();
@@ -19,6 +21,7 @@ class _QuizGameResultScreenState extends State<QuizGameResultScreen> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.white,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -54,68 +57,70 @@ class _QuizGameResultScreenState extends State<QuizGameResultScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: Container(
-                      height: 199,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          color: AppColors.l00B533,
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 15, bottom: 80),
-                        child: Container(
-                          width: 25,
-                          height: 25,
-                          decoration: const BoxDecoration(
-                            color: AppColors.white30,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Container(
-                              width: 15,
-                              height: 15,
-                              decoration: const BoxDecoration(
-                                color: AppColors.white50,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Container(
-                                  width: 15,
-                                  height: 15,
-                                  decoration: const BoxDecoration(
-                                    color: AppColors.white,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        textAlign: TextAlign.center,
-                                        "Your\nResult",
-                                        style: const AppTextStyle()
-                                            .labelHide
-                                            ?.copyWith(
-                                              color: AppColors.l00B533,
-                                              fontSize: 10,
-                                            ),
-                                      ),
-                                      Text(
-                                        "15",
-                                        style: const AppTextStyle()
-                                            .profileTitle
-                                            ?.copyWith(
-                                              color: AppColors.l00B533,
-                                              fontSize: 18,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
+                    height: 199,
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                      color: AppColors.l00B533,
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 15, bottom: 80),
+                      child: Container(
+                        width: 25,
+                        height: 25,
+                        decoration: const BoxDecoration(
+                          color: AppColors.white30,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            width: 15,
+                            height: 15,
+                            decoration: const BoxDecoration(
+                              color: AppColors.white50,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                width: 15,
+                                height: 15,
+                                decoration: const BoxDecoration(
+                                  color: AppColors.white,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      textAlign: TextAlign.center,
+                                      "Your\nResult",
+                                      style: const AppTextStyle()
+                                          .labelHide
+                                          ?.copyWith(
+                                            color: AppColors.l00B533,
+                                            fontSize: 10,
+                                          ),
+                                    ),
+                                    Text(
+                                      "${widget.correctAnswer * 5}",
+                                      style: const AppTextStyle()
+                                          .profileTitle
+                                          ?.copyWith(
+                                            color: AppColors.l00B533,
+                                            fontSize: 18,
+                                          ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
                 Center(
                   child: Padding(
@@ -141,14 +146,19 @@ class _QuizGameResultScreenState extends State<QuizGameResultScreen> {
                         children: [
                           Row(
                             children: [
-                              const Icon(Icons.circle,
-                                  color: Colors.green, size: 16),
+                              const Icon(
+                                Icons.circle,
+                                color: Colors.green,
+                                size: 16,
+                              ),
                               const SizedBox(width: 8),
                               Text(
-                                "3 correct answers",
+                                "${widget.correctAnswer} correct answers",
                                 style:
                                     const AppTextStyle().titleSmall?.copyWith(
                                           color: Colors.black,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w500,
                                         ),
                               ),
                             ],
@@ -156,14 +166,19 @@ class _QuizGameResultScreenState extends State<QuizGameResultScreen> {
                           const SizedBox(height: 10),
                           Row(
                             children: [
-                              const Icon(Icons.circle,
-                                  color: Colors.red, size: 16),
+                              const Icon(
+                                Icons.circle,
+                                color: Colors.red,
+                                size: 16,
+                              ),
                               const SizedBox(width: 8),
                               Text(
-                                "7 incorrect answers",
+                                "${10 - widget.correctAnswer} incorrect answers",
                                 style:
                                     const AppTextStyle().titleSmall?.copyWith(
                                           color: Colors.black,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w500,
                                         ),
                               ),
                             ],
@@ -185,7 +200,8 @@ class _QuizGameResultScreenState extends State<QuizGameResultScreen> {
               ),
               child: MaterialButton(
                 onPressed: () {
-                  context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}");
+                  context.go(
+                      "${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}/${AppRoutePath.quizGame}");
                 },
                 height: 54,
                 minWidth: double.infinity,

@@ -15,6 +15,7 @@ class DifficultySelectionScreen extends StatefulWidget {
 }
 
 class _DifficultySelectionScreenState extends State<DifficultySelectionScreen> {
+  int difficultyTime = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +97,8 @@ class _DifficultySelectionScreenState extends State<DifficultySelectionScreen> {
                   children: [
                     MaterialButton(
                       onPressed: () {
-                        context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}");
+                        difficultyTime = 15;
+                        context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}", extra: difficultyTime);
                       },
                       color: AppColors.l00B533,
                       height: 60,
@@ -116,7 +118,8 @@ class _DifficultySelectionScreenState extends State<DifficultySelectionScreen> {
                     const SizedBox(height: 20),
                     MaterialButton(
                       onPressed: () {
-                        context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}");                      },
+                        difficultyTime = 10;
+                        context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}", extra: difficultyTime);                      },
                       color: AppColors.l00B533,
                       height: 60,
                       minWidth: double.infinity,
@@ -135,7 +138,8 @@ class _DifficultySelectionScreenState extends State<DifficultySelectionScreen> {
                     const SizedBox(height: 20),
                     MaterialButton(
                       onPressed: () {
-                        context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}"); 
+                        difficultyTime = 5;
+                        context.go("${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}", extra: difficultyTime);
                       },
                       color: AppColors.l00B533,
                       height: 60,
