@@ -18,4 +18,5 @@ final class AppRoutePath{
   static const String level = "/level_screen";
   static const String levelCategory = "selected_category_screen_from_level_screen";
   static const String profile = "/profile_screen";
+  static const String admin = "admin_screen";
 }

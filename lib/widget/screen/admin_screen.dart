@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/core/style/app_text_style.dart';
 import 'package:quiz_app/services/util_service.dart';
@@ -18,6 +19,8 @@ class _AdminScreenState extends State<AdminScreen> {
   final TextEditingController secondC = TextEditingController();
   final TextEditingController correctAnswerC = TextEditingController();
   final TextEditingController searchC = TextEditingController();
+
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   @override
   void dispose() {
@@ -154,12 +157,7 @@ class _AdminScreenState extends State<AdminScreen> {
                   ),
                 ),
               )
-            : Text(
-                "Hello admin null",
-                style: const AppTextStyle().bodyLarge?.copyWith(
-                      color: AppColors.white,
-                    ),
-              ),
+            : Text("Hi ${firebaseAuth.currentUser?.displayName?.split('/')[0]}",style: const AppTextStyle().titleLarge?.copyWith(color: AppColors.lD9D9D9)),
         actions: [
           IconButton(
             onPressed: () {

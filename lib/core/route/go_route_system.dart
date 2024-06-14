@@ -11,6 +11,7 @@ import 'package:quiz_app/widget/screen/Main/Level%20root/selected_category_scree
 import 'package:quiz_app/widget/screen/Main/Profile/profile_screen.dart';
 import 'package:quiz_app/widget/screen/Main/main_screen.dart';
 import 'package:quiz_app/widget/screen/Splash/splash_screen.dart';
+import 'package:quiz_app/widget/screen/admin_screen.dart';
 
 import '../../widget/screen/Main/Home root/Difficulity selection/Home category/Quiz/quiz_game_result_screen.dart';
 import '../../widget/screen/Main/Home root/Difficulity selection/Home category/Quiz/quiz_game_screen.dart';
@@ -113,6 +114,13 @@ final class GoRouteSystem {
           GoRoute(
             path: AppRoutePath.profile,
             builder: (context, state) => const ProfileScreen(),
+            routes: [
+              GoRoute(
+                path: AppRoutePath.admin,
+                builder: (context, state) =>
+                const AdminScreen(),
+              ),
+            ],
           ),
         ],
       ),

@@ -28,6 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController lastC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
   TextEditingController confirmC = TextEditingController();
+  TextEditingController passC = TextEditingController();
 
   @override
   void dispose() {
@@ -35,9 +36,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     lastC.dispose();
     passwordC.dispose();
     confirmC.dispose();
+    passC.dispose();
     super.dispose();
   }
-
 
   Future<void> createImage() async {
     final ImagePicker picker = ImagePicker();
@@ -45,27 +46,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
       source: isCamera ? ImageSource.camera : ImageSource.gallery,
     );
     if (xFile != null) {
-      await StorageService.upload(path: firebaseAuth.currentUser!.email.toString(), file: File(xFile.path));
+      await StorageService.upload(
+          path: firebaseAuth.currentUser!.email.toString(),
+          file: File(xFile.path));
     }
     await getImage();
   }
 
-  Future<void> getImage()async{
-    final profileImage = await StorageService.getData(path: "${firebaseAuth.currentUser!.email.toString()}/profile_image.jpg");
-    if (profileImage!=null) {
+  Future<void> getImage() async {
+    final profileImage = await StorageService.getData(
+        path:
+            "${firebaseAuth.currentUser!.email.toString()}/profile_image.jpg");
+    if (profileImage != null) {
       imageUrl = profileImage;
-    }else{
+    } else {
       imageUrl = null;
     }
     setState(() {});
   }
 
-  Future<void> deleteImage()async{
-    await StorageService.deletePath(path: "${firebaseAuth.currentUser!.email.toString()}/profile_image.jpg");
+  Future<void> deleteImage() async {
+    await StorageService.deletePath(
+        path:
+            "${firebaseAuth.currentUser!.email.toString()}/profile_image.jpg");
     await getImage();
     setState(() {});
   }
-
 
   @override
   void initState() {
@@ -74,11 +80,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   @override
-  void didChangeDependencies()async {
+  void didChangeDependencies() async {
     await getImage();
     super.didChangeDependencies();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -93,31 +98,78 @@ class _ProfileScreenState extends State<ProfileScreen> {
             itemBuilder: (BuildContext context) {
               return <PopupMenuEntry<String>>[
                 PopupMenuItem<String>(
-                  value: 'option1',
+                  value: 'option3',
                   child: ListTile(
-                    leading: const Icon(CupertinoIcons.delete),
-                    title: Text('Delete account',style: const AppTextStyle().titleSmall),
+                    leading: const Icon(CupertinoIcons.person),
+                    title: Text("Admin side",
+                        style: const AppTextStyle().titleSmall),
                   ),
                 ),
                 const PopupMenuDivider(),
                 PopupMenuItem<String>(
-                  value: 'option2',
+                  value: "option1",
+                  child: ListTile(
+                    leading: const Icon(CupertinoIcons.delete),
+                    title: Text("Delete account",
+                        style: const AppTextStyle().titleSmall),
+                  ),
+                ),
+                const PopupMenuDivider(),
+                PopupMenuItem<String>(
+                  value: "option2",
                   child: ListTile(
                     leading: const Icon(Icons.logout_outlined),
-                    title: Text('Logout',style: const AppTextStyle().titleSmall),
+                    title:
+                        Text("Logout", style: const AppTextStyle().titleSmall),
                   ),
                 ),
               ];
             },
-            onSelected: (String value) async{
+            onSelected: (String value) async {
               switch (value) {
-                case 'option1':
+                case "option1":
                   await AuthService.deleteAccount();
                   context.go("${AppRoutePath.signIn}/${AppRoutePath.signUp}");
                   break;
-                case 'option2':
+                case "option2":
                   await AuthService.logOut();
                   context.go(AppRoutePath.signIn);
+                  break;
+                case "option3":
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: const Text("Enter the password"),
+                      content: CustomTextField(
+                        controller: passC,
+                        keyBoardType: TextInputType.text,
+                        textInputAction: TextInputAction.done,
+                        obscureText: false,
+                        hintText: "Password",
+                        labelText: "Password",
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Cancel'),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            if (passC.text == "1234rewq") {
+                              passC.clear();
+                              Navigator.pop(context);
+                              context.go(
+                                  "${AppRoutePath.profile}/${AppRoutePath.admin}");
+                            } else {
+                              passC.clear();
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    ),
+                  );
                   break;
               }
             },
@@ -137,11 +189,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 minWidth: 109,
                 shape: const CircleBorder(),
                 child: CircleAvatar(
-                  radius: 55,
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: NetworkImage(imageUrl.toString()),
-                  child: imageUrl == null ? AppImages.profilePersonIcon:null
-                ),
+                    radius: 55,
+                    backgroundColor: Colors.transparent,
+                    backgroundImage: NetworkImage(imageUrl.toString()),
+                    child:
+                        imageUrl == null ? AppImages.profilePersonIcon : null),
               ),
               SizedBox(
                 height: 48,
@@ -232,7 +284,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                       ),
                     ),
-                    const SizedBox(height: 40,)
+                    const SizedBox(
+                      height: 40,
+                    )
                   ],
                 ),
               ),
