@@ -16,6 +16,7 @@ class QuizGameResultScreen extends StatefulWidget {
 }
 
 class _QuizGameResultScreenState extends State<QuizGameResultScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +49,7 @@ class _QuizGameResultScreenState extends State<QuizGameResultScreen> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -201,7 +202,7 @@ class _QuizGameResultScreenState extends State<QuizGameResultScreen> {
               child: MaterialButton(
                 onPressed: () {
                   context.go(
-                      "${AppRoutePath.home}/${AppRoutePath.difficultySelection}/${AppRoutePath.homeCategory}/${AppRoutePath.quizGame}");
+                      "${AppRoutePath.home}/${AppRoutePath.difficultySelection}");
                 },
                 height: 54,
                 minWidth: double.infinity,

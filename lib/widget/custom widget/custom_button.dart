@@ -10,7 +10,8 @@ class CustomQuizButton extends StatelessWidget {
       {super.key,
       required this.text,
       required this.onPressed,
-      required this.alpha});
+      required this.alpha,
+  });
 
   @override
   Widget build(BuildContext context) {

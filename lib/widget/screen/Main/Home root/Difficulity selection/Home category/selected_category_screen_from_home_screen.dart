@@ -7,7 +7,7 @@ import 'package:quiz_app/core/style/app_text_style.dart';
 
 class SelectedCategoryScreenFromHomeScreen extends StatefulWidget {
   final int difficultyTime;
-  const SelectedCategoryScreenFromHomeScreen({super.key, required this.difficultyTime});
+  const SelectedCategoryScreenFromHomeScreen({super.key,required this.difficultyTime});
 
   @override
   State<SelectedCategoryScreenFromHomeScreen> createState() =>

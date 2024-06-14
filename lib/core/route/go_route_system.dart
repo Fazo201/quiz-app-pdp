@@ -74,21 +74,21 @@ final class GoRouteSystem {
                   GoRoute(
                     path: AppRoutePath.homeCategory,
                     builder: (context, state) {
-                      final int difficultyTime = state.extra as int;
+                      final int difficultyTime = state.extra!=null?state.extra as int:0;
                       return SelectedCategoryScreenFromHomeScreen(difficultyTime: difficultyTime);
                     },
                     routes: [
                       GoRoute(
                         path: AppRoutePath.quizGame,
                         builder: (context, state) {
-                          final int difficultyTime = state.extra as int;
+                          final int difficultyTime = state.extra!=null?state.extra as int:0;
                           return QuizGameScreen(difficultyTime: difficultyTime);
                         },
                         routes: [
                           GoRoute(
                             path: AppRoutePath.quizGameResult,
                             builder: (context, state) {
-                              final int correctAnswer = state.extra as int;
+                              final int correctAnswer = state.extra!=null?state.extra as int:0;
                               return QuizGameResultScreen(correctAnswer: correctAnswer);
                             },
                           ),

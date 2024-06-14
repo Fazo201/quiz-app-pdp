@@ -206,7 +206,7 @@ class _QuizGameScreenState extends State<QuizGameScreen> {
                   ),
                 ),
               );
-            }).toList(),
+            }),
             const Spacer(),
           ],
         ),
