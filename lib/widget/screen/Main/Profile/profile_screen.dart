@@ -144,7 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         controller: passC,
                         keyBoardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
-                        obscureText: false,
+                        obscureText: true,
                         hintText: "Password",
                         labelText: "Password",
                       ),
