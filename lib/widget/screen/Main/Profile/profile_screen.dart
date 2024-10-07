@@ -129,11 +129,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               switch (value) {
                 case "option1":
                   await AuthService.deleteAccount();
-                  context.go("${AppRoutePath.signIn}/${AppRoutePath.signUp}");
+                  context.go(AppRoutePath.splash);
                   break;
                 case "option2":
                   await AuthService.logOut();
-                  context.go(AppRoutePath.signIn);
+                  context.go(AppRoutePath.splash);
                   break;
                 case "option3":
                   showDialog<String>(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/core/route/app_route_path.dart';
 import 'package:quiz_app/core/style/app_colors.dart';
 import 'package:quiz_app/core/style/app_images.dart';
 import 'package:quiz_app/core/style/app_text_style.dart';
@@ -14,8 +15,8 @@ class LevelScreen extends StatefulWidget {
 class _LevelScreenState extends State<LevelScreen> {
 
   List<CustomLevelCategory> list = [
-    CustomLevelCategory(image: AppImages.levelFlutterLogo,text: "Flutter"),
-    CustomLevelCategory(image: AppImages.levelPythonLogo,text: "Phyton",),
+    CustomLevelCategory(image: AppImages.levelFlutterLogo,text: "Flutter", goLocation: "${AppRoutePath.level}/${AppRoutePath.levelCategory}"),
+    CustomLevelCategory(image: AppImages.levelPythonLogo,text: "Python",),
     CustomLevelCategory(image: AppImages.levelFrontendLogo,text: "Frontend",),
     CustomLevelCategory(image: AppImages.levelJavaLogo,text: "Java",),
     CustomLevelCategory(image: AppImages.levelCPlusLogo,text: "C++",),
