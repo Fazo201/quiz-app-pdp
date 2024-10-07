@@ -20,6 +20,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         currentIndex: currentIndex,
         onTap: onTap,
         selectedFontSize: 20,
+        unselectedFontSize: 20,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: [

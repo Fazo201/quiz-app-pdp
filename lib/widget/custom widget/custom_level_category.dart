@@ -12,7 +12,7 @@ class CustomLevelCategory extends StatelessWidget {
         this.goLocation,
       });
 
-  final SvgPicture image;
+  final dynamic image;
   final String text;
   final String? goLocation;
 
